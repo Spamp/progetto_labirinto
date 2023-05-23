@@ -3,6 +3,7 @@
 Created on Tue May 23 13:41:20 2023
 
 """
+import os
 import json
 from PIL import Image
 import numpy as np
@@ -17,8 +18,29 @@ class Input_file:
         - il/i punto/i di partenza e arrivo
         
     """
-    
-    
+    def leggi_file(self, filepath):
+        """
+
+        Parameters
+        ----------
+        filepath : str
+            prende in ingresso il path del file da leggere in formato json
+
+        Returns
+        -------
+        dictionary : dict,img_arry
+            restituisce un dizionario che contiene le caratteristiche del labirinto
+            oppure restituisce l'immagine contenuta nel file attraverso un array tridimensionale, nel quale le tre 
+            dimensioni corrispondono all'altezza, alla larghezza e ai canali dell'immagine.
+        
+        """
+        percorso,estensioneFile = os.path.splitext(filepath)
+        if estensioneFile == '.json':
+            dictionary=Input_file.leggi_file_json(self,filepath)
+            return dictionary
+        elif estensioneFile == '.tiff':
+            img_array =Input_file.leggi_file_tiff(self, filepath)
+            return img_array
         
         
     def leggi_file_json(self, filepath):
