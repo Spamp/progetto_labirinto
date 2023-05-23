@@ -9,5 +9,5 @@ if __name__ == "__main__":
     
     """
     input_file=Input_file()
-    filepath = './indata/'+str(input('Inserisci il nome del file da leggere  '))
-    leggiFile= input_file.leggi_file_json(filepath)
+    filepath = './indata/'+str(input('Inserisci il nome del file da leggere con formato tiff o json tra uno di quelli elencati:  '))
+    leggiFile= input_file.leggi_file_tiff(filepath)
