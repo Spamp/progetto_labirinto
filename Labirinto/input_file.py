@@ -3,6 +3,7 @@
 Created on Tue May 23 13:41:20 2023
 
 """
+import json
 
 class Input_file:
     
@@ -14,3 +15,15 @@ class Input_file:
         - il/i punto/i di partenza e arrivo
         
     """
+    
+    
+        
+        
+    def leggi_file_json(self, filepath):
+        with open(filepath) as file:
+            dictionary = json.load(file)
+        return dictionary 
+        
+        
+    
+    
