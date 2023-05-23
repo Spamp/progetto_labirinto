@@ -5,8 +5,11 @@ Created on Tue May 23 13:41:20 2023
 """
 import os
 import json
-from PIL import Image
 import numpy as np
+
+from PIL import Image
+from Labirinto import Labirinto
+
 
 class Input_file:
     
@@ -37,7 +40,9 @@ class Input_file:
         percorso,estensioneFile = os.path.splitext(filepath)
         if estensioneFile == '.json':
             dictionary=Input_file.leggi_file_json(self,filepath)
-            return dictionary
+            maze=Labirinto()
+            (labirinto, partenze, destinazioni)=maze.crea_labirinto_json(dictionary)
+            return (labirinto, partenze, destinazioni)
         elif estensioneFile == '.tiff':
             img_array =Input_file.leggi_file_tiff(self, filepath)
             return img_array
