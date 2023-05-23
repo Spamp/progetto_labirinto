@@ -32,7 +32,7 @@ class Input_file:
         Returns
         -------
         dictionary : dict
-            dizionario che contiene le caratteristiche del labirinto
+            restituisce un dizionario che contiene le caratteristiche del labirinto
         
         """
         
@@ -61,10 +61,9 @@ class Input_file:
             canali per i colori (RGB) 
 
         """
-    
-        # Apri il file TIFF
+     
         with Image.open(filepath) as img:
-            # Converti l'immagine in una matrice NumPy
+            # Converte l'immagine in una matrice NumPy
             img_array = np.array(img)
             return img_array
         
