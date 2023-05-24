@@ -30,7 +30,7 @@ class Labirinto:
 
         """
         #creo una matrice numpy di soli 1, con altezza e larghezza specificate nel dizionario
-        labirinto= np.full((dict['altezza'], dict['larghezza']), 1.)
+        maze= np.full((dict['altezza'], dict['larghezza']), 1.)
         # creo la lista con le partenze specificate nel dizionario
         partenze=dict['iniziali']
         # creo la lista con le destinazioni specificate nel dizionario
@@ -42,19 +42,19 @@ class Labirinto:
                 indice1=int(dict['pareti'][i]['posizione'][0])
                 indice2=int(dict['pareti'][i]['posizione'][1])
                 indice3=int(dict['pareti'][i]['posizione'][1])+int(dict['pareti'][i]['lunghezza'])
-                labirinto[indice1,indice2:indice3]=np.nan
+                maze[indice1,indice2:indice3]=np.nan
             else:
                 indice1=int(dict['pareti'][i]['posizione'][0])
                 indice2=int(dict['pareti'][i]['posizione'][0])+int(dict['pareti'][i]['lunghezza'])
                 indice3=int(dict['pareti'][i]['posizione'][1])
-                labirinto[indice1:indice2,indice3]=np.nan
+                maze[indice1:indice2,indice3]=np.nan
                 
         # sostuisco le posizioni specificate nel dizioanrio con il costo 
         for i in range(len(dict['costi'])):
             posizione_orizzontale=dict['costi'][i][0]
             posizione_verticale=dict['costi'][i][1]
-            labirinto[posizione_orizzontale,posizione_verticale]=float(dict['costi'][i][2])
-        return (labirinto, partenze, destinazioni)
+            maze[posizione_orizzontale,posizione_verticale]=float(dict['costi'][i][2])
+        return (maze, partenze, destinazioni)
     
     
     def crea_labirinto_tiff(self,img_array):
@@ -92,7 +92,7 @@ class Labirinto:
         # ottengo le dimensioni del labirinto
         forma_lab = img_array.shape
         # creo il labirinto utilizzando le dimensioni dell'array
-        labirinto = np.full((forma_lab[0],forma_lab[1]),np.empty)
+        maze = np.full((forma_lab[0],forma_lab[1]),np.empty)
         
         partenze=[]
         destinazioni=[]
@@ -100,7 +100,7 @@ class Labirinto:
             for j in range(forma_lab[1]):
                 
                 indice = f'[{img_array[i][j][0]} {img_array[i][j][1]} {img_array[i][j][2]}]'
-                labirinto[i,j] = legenda_colori[indice]
+                maze[i,j] = legenda_colori[indice]
                 
                 # Se il pixel è rosso, indica una posizione di destinazione del labirinto: 
                     #inserisco la coordinata nella lista destinazioni
@@ -118,6 +118,6 @@ class Labirinto:
                     coordinate.append(j)
                     partenze.append(coordinate)
         
-        return (labirinto, partenze, destinazioni)
+        return (maze, partenze, destinazioni)
         
         
