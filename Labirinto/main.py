@@ -7,7 +7,7 @@ from Risolutore_labirinto import Risolutore_labirinto
 if __name__ == "__main__":
     
     """ 
-    Chiede in input il file 
+    Richiama la classe Risolutore_labirinto per risolvere il percorso
     
     """
     risolutore=Risolutore_labirinto

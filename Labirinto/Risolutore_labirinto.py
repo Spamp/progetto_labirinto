@@ -28,8 +28,8 @@ class Risolutore_labirinto:
         #Chiedo il file di input e richiamo la funzione di lettura
         input_file=Input_file()
         filepath = './indata/'+str(input('Inserisci il nome del file da leggere con formato tiff o json tra uno di quelli elencati:  '))
-        array=input_file.leggi_file_json(filepath)
+        file=input_file.leggi_file(filepath)
         
         #maze=Labirinto()
         #labirinto, partenze, destinazioni = maze.crea_labirinto_json(array)
-        return filepath, array
+        return filepath, file

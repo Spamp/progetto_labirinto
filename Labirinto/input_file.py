@@ -21,8 +21,12 @@ class Input_file:
         - il/i punto/i di partenza e arrivo
         
     """
+    
     def leggi_file(self, filepath):
+       
         """
+        Metodo che restituisce il labirinto sotto forma di dizionario o array, in base
+        al formato del file di input (.json o .tiff)
 
         Parameters
         ----------
@@ -31,11 +35,8 @@ class Input_file:
 
         Returns
         -------
-        dictionary : dict,img_arry
-            restituisce un dizionario che contiene le caratteristiche del labirinto
-            oppure restituisce l'immagine contenuta nel file attraverso un array tridimensionale, nel quale le tre 
-            dimensioni corrispondono all'altezza, alla larghezza e ai canali dell'immagine.
-        
+        dictionary : dict, img_arry
+            
         """
         percorso,estensioneFile = os.path.splitext(filepath)
         if estensioneFile == '.json':
@@ -49,7 +50,9 @@ class Input_file:
         
         
     def leggi_file_json(self, filepath):
+       
         """
+        Metodo che restituisce il dizionario contenente le caratteristiche del labirinto
 
         Parameters
         ----------
@@ -59,7 +62,6 @@ class Input_file:
         Returns
         -------
         dictionary : dict
-            restituisce un dizionario che contiene le caratteristiche del labirinto
         
         """
         
@@ -71,6 +73,12 @@ class Input_file:
     def leggi_file_tiff(self,filepath):
         
         """
+        Metodo che restituisce l'immagine contenuta nel file attraverso un array tridimensionale, nel quale le tre 
+        dimensioni corrispondono all'altezza, alla larghezza e ai canali dell'immagine.
+        
+        Essendo l'immagine a colori, l'array ha forma: (altezza, larghezza, 3), perchè si hanno 3 
+        canali per i colori (RGB)
+        
         
         Parameters
         ----------
@@ -81,12 +89,6 @@ class Input_file:
         -------
         img_array : array
         
-            restituisce l'immagine contenuta nel file attraverso un array tridimensionale, nel quale le tre 
-            dimensioni corrispondono all'altezza, alla larghezza e ai canali dell'immagine.
-            
-            Essendo l'immagine a colori, l'array ha forma: (altezza, larghezza, 3), perchè si hanno 3 
-            canali per i colori (RGB) 
-
         """
      
         with Image.open(filepath) as img:
