@@ -8,7 +8,7 @@ import json
 import numpy as np
 
 from PIL import Image
-from Labirinto import Labirinto
+from labirinto import Labirinto
 
 
 class Input_file:
@@ -35,18 +35,37 @@ class Input_file:
 
         Returns
         -------
-        dictionary : dict, img_arry
+        (labirinto, partenze, destinazioni):matrice numpy con i pesi del labirinto, lista di liste delle coordinate
+                                            di partenza e lista di liste con le coordinate di destinazione
             
         """
+        #splittp la stringa filepath per isolare il nome del file e il formato
         percorso,estensioneFile = os.path.splitext(filepath)
-        if estensioneFile == '.json':
-            dictionary=Input_file.leggi_file_json(self,filepath)
-            maze=Labirinto()
-            (labirinto, partenze, destinazioni)=maze.crea_labirinto_json(dictionary)
-            return (labirinto, partenze, destinazioni)
-        elif estensioneFile == '.tiff':
-            img_array =Input_file.leggi_file_tiff(self, filepath)
-            return img_array
+        percorsolist=percorso.split('/')
+        nome=percorsolist[2]
+        nomefile=nome+estensioneFile
+        lista_file = os.listdir('./indata/')
+        #controlla che il nome del file sia all'interno della cartella 
+        if nomefile in lista_file:
+            if estensioneFile == '.json':
+                dictionary=Input_file.leggi_file_json(self,filepath)
+                #richiamo diretto il metodo per creare il labirinto da file json
+                lb=Labirinto
+                (labirinto, partenze, destinazioni)=lb.crea_labirinto_json(self,dictionary)
+                return (labirinto, partenze, destinazioni)
+            elif estensioneFile == '.tiff':
+                img_array =Input_file.leggi_file_tiff(self, filepath)
+                #richiamo diretto il metodo per creare il labirinto da file tiff
+                lb=Labirinto
+                (labirinto, partenze, destinazioni)=lb.crea_labirinto_tiff(self,img_array)
+                return (labirinto, partenze, destinazioni)
+        #se il file non si trova all'interno della cartella indata, richiedo di nuovo l'input e richiamo il metodo
+        else:
+            lista_file = os.listdir('./indata/')
+            print(lista_file)
+            filepath='./indata/'+str(input('il file cercato non è presente nella cartella. Prova con un altro nome: '))
+            return Input_file.leggi_file(self, filepath)
+
         
         
     def leggi_file_json(self, filepath):
