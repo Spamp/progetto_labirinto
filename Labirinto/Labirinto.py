@@ -13,19 +13,30 @@ class Labirinto:
 
     def crea_labirinto_json(self,dict):
         """
-        inpunt: dizionario con caratteristiche del labirinto
+        
+        Metodo che crea il labirinto a partire dal dizionario generato dalla lettura 
+        del file con estensione .json
+        
+        Parameters
+        ----------
+        dict: dict
+            prende in ingresso il dizionario con le caratteristiche del labirinto
 
-        metodo che crea il labirito sostituendo nelle coordinate specificate nel dizionario i costi corrispondenti 
-        e pone al posto delle pareti il valore nan.
-        inoltre salva in una lista di liste le posizioni di partenza e di destinazione.
+        Returns
+        -------
+        Labirinto: array 
+        Partenze: list
+        Destinazioni: list
 
-        output: matrice labirinto, lista delle posizioni di partenza e lista delle posizioni di destinazione
         """
-        #creo una matrice numpy piena di zeri, con le grandezze del labirinto
+        #creo una matrice numpy di soli 1, con altezza e larghezza specificate nel dizionario
         labirinto= np.full((dict['altezza'], dict['larghezza']), 1.)
+        # creo la lista con le partenze specificate nel dizionario
         partenze=dict['iniziali']
+        # creo la lista con le destinazioni specificate nel dizionario
         destinazioni=dict['finale']
-        #creo le pareti sostiuendo gli zeri con nan
+        
+        # creo le pareti sostiuendo gli 1 con il valore NaN
         for i in range(len(dict['pareti'])):
             if dict['pareti'][i]['orientamento']=='H':
                 indice1=int(dict['pareti'][i]['posizione'][0])
@@ -37,7 +48,8 @@ class Labirinto:
                 indice2=int(dict['pareti'][i]['posizione'][0])+int(dict['pareti'][i]['lunghezza'])
                 indice3=int(dict['pareti'][i]['posizione'][1])
                 labirinto[indice1:indice2,indice3]=np.nan
-        #sostuisco con il costo le posizioni specificate
+                
+        # sostuisco le posizioni specificate nel dizioanrio con il costo 
         for i in range(len(dict['costi'])):
             posizione_orizzontale=dict['costi'][i][0]
             posizione_verticale=dict['costi'][i][1]
@@ -48,6 +60,9 @@ class Labirinto:
     def crea_labirinto_tiff(self,img_array):
         
         """
+        Metodo che crea il labirinto a partire dall'array generato dalla lettura 
+        del file con estensione .tiff
+        
         Parameters
         ----------
         img_array : array
@@ -63,7 +78,9 @@ class Labirinto:
 
         Returns
         -------
-        None
+        Labirinto: array
+        Partenze: list
+        Destinazioni: list
         
         """
         legenda_colori={'[255 255 255]':1.,'[0 0 0]':np.nan,'[0 255 0]':0.,'[255 0 0]':0.,
@@ -82,12 +99,12 @@ class Labirinto:
         for i in range(forma_lab[0]):
             for j in range(forma_lab[1]):
                 
-                indice=f'[{img_array[i][j][0]} {img_array[i][j][1]} {img_array[i][j][2]}]'
-                labirinto[i,j]=legenda_colori[indice]
+                indice = f'[{img_array[i][j][0]} {img_array[i][j][1]} {img_array[i][j][2]}]'
+                labirinto[i,j] = legenda_colori[indice]
                 
                 # Se il pixel è rosso, indica una posizione di destinazione del labirinto: 
                     #inserisco la coordinata nella lista destinazioni
-                if indice=='[255 0 0]':
+                if indice =='[255 0 0]':
                     coordinate=[]
                     coordinate.append(i)
                     coordinate.append(j)
@@ -95,7 +112,7 @@ class Labirinto:
                     
                 # Se il pixel è verde, indica una posizione di partenza del labirinto: 
                     #inserisco la coordinata nella lista partenze
-                elif indice=='[0 255 0]':
+                elif indice =='[0 255 0]':
                     coordinate=[]
                     coordinate.append(i)
                     coordinate.append(j)
