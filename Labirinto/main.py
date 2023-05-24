@@ -11,4 +11,4 @@ if __name__ == "__main__":
     
     """
     risolutore=Risolutore_labirinto
-    filepath, dict_labirinto = risolutore.calcolatore()
+    filepath, img_array, labirinto, partenze, destinazioni = risolutore.calcolatore()

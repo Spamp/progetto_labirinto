@@ -54,12 +54,12 @@ class Labirinto:
               Prende in ingresso l'array tridimensionale restituito da leggi_file_tiff
               
               Legenda colori:
-                  - [255 255 255]: pixel bianchi, sono posizioni che non assegnano punti, viene associato un costo pari a 1
+                  - [255 255 255]: pixel bianchi, sono posizioni che non assegnano punti, costo pari a 1
                   - [0 0 0]: pixel neri, sono le pareti a cui viene associato valore NaN
-                  - [0 255 0]: pixel verdi,indica la posizione di partenze del labirinto, viene associato un costo pari a 0
-                  - [255 0 0]: Corrisponde al colore rosso, indica una posizione di destinazine del labirinto, viene associato un costo pari a 0. 
-                  - [16 16 16], [32 32 32], [48 48 48], ..., [240 240 240]: sono valori di grigio, rappresentati da diverse tonalità di colore.
-                     Ciascuno di essi viene assegnato a un costo specifico compreso tra 1.0 e 15.0.
+                  - [0 255 0]: pixel verdi,indica la posizione di partenze del labirinto, costo pari a 0
+                  - [255 0 0]: Corrisponde al colore rosso, indica una posizione di destinazine del labirinto, costo pari a 0. 
+                  - [16 16 16], [32 32 32], [48 48 48], ..., [240 240 240]: sono valori di grigio, rappresentati da diverse 
+                  tonalità di colore.Ciascuno di essi viene assegnato a un costo specifico compreso tra 1.0 e 15.0.
 
         Returns
         -------
@@ -70,4 +70,37 @@ class Labirinto:
                          '[16 16 16]':1.,'[32 32 32]':2.,'[48 48 48]':3.,'[64 64 64]':4.,'[80 80 80]':5.,
                          '[96 96 96]':6.,'[112 112 112]':7.,'[128 128 128]':8.,'[144 144 144]':9.,'[160 160 160]':10.,
                          '[176 176 176]':11.,'[192 192 192]':12.,'[208 208 208]':13.,'[224 224 224]':14.,'[240 240 240]':15.}
+        
+        
+        # ottengo le dimensioni del labirinto
+        forma_lab = img_array.shape
+        # creo il labirinto utilizzando le dimensioni dell'array
+        labirinto = np.full((forma_lab[0],forma_lab[1]),np.empty)
+        
+        partenze=[]
+        destinazioni=[]
+        for i in range(forma_lab[0]):
+            for j in range(forma_lab[1]):
+                
+                indice=f'[{img_array[i][j][0]} {img_array[i][j][1]} {img_array[i][j][2]}]'
+                labirinto[i,j]=legenda_colori[indice]
+                
+                # Se il pixel è rosso, indica una posizione di destinazione del labirinto: 
+                    #inserisco la coordinata nella lista destinazioni
+                if indice=='[255 0 0]':
+                    coordinate=[]
+                    coordinate.append(i)
+                    coordinate.append(j)
+                    destinazioni.append(coordinate)
+                    
+                # Se il pixel è verde, indica una posizione di partenza del labirinto: 
+                    #inserisco la coordinata nella lista partenze
+                elif indice=='[0 255 0]':
+                    coordinate=[]
+                    coordinate.append(i)
+                    coordinate.append(j)
+                    partenze.append(coordinate)
+        
+        return (labirinto, partenze, destinazioni)
+        
         
