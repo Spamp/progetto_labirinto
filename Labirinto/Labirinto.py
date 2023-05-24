@@ -43,3 +43,31 @@ class Labirinto:
             posizione_verticale=dict['costi'][i][1]
             labirinto[posizione_orizzontale,posizione_verticale]=float(dict['costi'][i][2])
         return (labirinto, partenze, destinazioni)
+    
+    
+    def crea_labirinto_tiff(self,img_array):
+        
+        """
+        Parameters
+        ----------
+        img_array : array
+              Prende in ingresso l'array tridimensionale restituito da leggi_file_tiff
+              
+              Legenda colori:
+                  - [255 255 255]: pixel bianchi, sono posizioni che non assegnano punti, viene associato un costo pari a 1
+                  - [0 0 0]: pixel neri, sono le pareti a cui viene associato valore NaN
+                  - [0 255 0]: pixel verdi,indica la posizione di partenze del labirinto, viene associato un costo pari a 0
+                  - [255 0 0]: Corrisponde al colore rosso, indica una posizione di destinazine del labirinto, viene associato un costo pari a 0. 
+                  - [16 16 16], [32 32 32], [48 48 48], ..., [240 240 240]: sono valori di grigio, rappresentati da diverse tonalità di colore.
+                     Ciascuno di essi viene assegnato a un costo specifico compreso tra 1.0 e 15.0.
+
+        Returns
+        -------
+        None
+        
+        """
+        legenda_colori={'[255 255 255]':1.,'[0 0 0]':np.nan,'[0 255 0]':0.,'[255 0 0]':0.,
+                         '[16 16 16]':1.,'[32 32 32]':2.,'[48 48 48]':3.,'[64 64 64]':4.,'[80 80 80]':5.,
+                         '[96 96 96]':6.,'[112 112 112]':7.,'[128 128 128]':8.,'[144 144 144]':9.,'[160 160 160]':10.,
+                         '[176 176 176]':11.,'[192 192 192]':12.,'[208 208 208]':13.,'[224 224 224]':14.,'[240 240 240]':15.}
+        
