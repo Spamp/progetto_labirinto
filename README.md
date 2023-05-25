@@ -1,5 +1,4 @@
-## PROGETTO_LABIRINTO
-#Labirinto
+# PROGETTO_LABIRINTO
 Il programma deve acquisire il layout di un labirinto costituito da una matrice di posizioni, una o più posizioni di partenza e una posizione di arrivo, e determinare per ogni punto di partenza il percorso che permette di raggiungere il punto di arrivo o, in alternativa, se non esiste alcun percorso possibile.
 
 Nel labirinto sono presenti posizioni a cui è associato un costo. Nel caso esista un percorso che permette di raggingere da un punto di partenza il punto di arrivo, oltre al percorso, il programma deve anche fornire il suo costo totale che è la somma dei costi incontrati lungo di esso più la lunghezza del percorso in pixel. Nel caso esistano più percorsi possibili da un determinato punto di partenza, il programma deve fornire il percorso con il costo minore.
@@ -47,6 +46,6 @@ I livelli di grigio possibili sono:
 124 che assegna un costo pari a 14
 240 che assegna un costo pari a 15
 
-## SVOLGIMENTO DEL PROGETTO
+# SVOLGIMENTO DEL PROGETTO
 Il programma implementato riceve in ingresso un file contenente le caratteristiche del labirinto, una lista di partenze e una lista di destinazioni, e fornisce in output il path del percorso di costo minimo fra i punti specificati, insieme ai costi ad essi associati.
-#INPUT
+##INPUT
