@@ -50,6 +50,36 @@ class Labirinto:
         return G
     
     
+    
+    def cammino_minimo(self, grafo):
+        
+        # Trasforma ogni sottolista in una tupla
+        partenze=[tuple(sublist) for sublist in self.partenze]
+        partenze=tuple(partenze)
+        destinazioni=[tuple(sublist) for sublist in self.destinazioni]
+        destinazioni=tuple(destinazioni)
+        
+        # converti in insiemi di nodi
+        partenze_set = set(partenze)
+        destinazioni_set = set(destinazioni)
+        cammini_minimi = [] #calcola i cammini minimi fra partenza/e e destinazione/i
+        lunghezza_cammino=[]
+        
+        # scorri tutte le coppie di partenza e destinazione
+        for nodo_p in partenze_set:
+            for nodo_d in destinazioni_set:
+                # verifico che i nodi di partenza e destinazione siano nel grafo
+                if grafo.has_node(nodo_p) and grafo.has_node(nodo_d):
+                    # verifico che esista un path possibile fra nodo di partenza e destinazione 
+                    if nx.has_path(grafo,nodo_p,nodo_d):
+                        #Returns the shortest weighted path from source to target in G.
+                        distance, cammino_minimo = nx.single_source_dijkstra(grafo, source=nodo_p, target=nodo_d, weight ='weight')
+                        cammini_minimi.append(cammino_minimo)
+                        lunghezza_cammino.append(distance+(len(cammino_minimo)-1))
+                        
+        return cammini_minimi, lunghezza_cammino
+    
+    
 
     
     

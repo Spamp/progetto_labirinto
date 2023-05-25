@@ -33,6 +33,6 @@ class Risolutore_labirinto:
         
         maze = Labirinto(labirinto, partenze, destinazioni)
         grafo = maze.crea_grafo()
+        shortest_path, weight= maze.cammino_minimo(grafo)
         
-        
-        return (labirinto, partenze, destinazioni, grafo)
+        return (labirinto, partenze, destinazioni, grafo, shortest_path, weight)

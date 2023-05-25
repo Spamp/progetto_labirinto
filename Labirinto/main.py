@@ -11,4 +11,4 @@ if __name__ == "__main__":
     
     """
     risolutore=Risolutore_labirinto
-    (labirinto, partenze, destinazioni, grafo) = risolutore.calcolatore()
+    (labirinto, partenze, destinazioni, grafo, cammini_minimi, weight) = risolutore.calcolatore()
