@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-from risolutore_labirinto import Risolutore_labirinto
+from Risolutore_labirinto import Risolutore_labirinto
 
 
 if __name__ == "__main__":
@@ -11,4 +11,4 @@ if __name__ == "__main__":
     
     """
     risolutore=Risolutore_labirinto
-    (labirinto, partenze, destinazioni) = risolutore.calcolatore()
+    (labirinto, partenze, destinazioni, grafo) = risolutore.calcolatore()

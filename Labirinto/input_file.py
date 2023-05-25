@@ -8,7 +8,6 @@ import json
 import numpy as np
 
 from PIL import Image
-from labirinto import Labirinto
 
 
 class Input_file:
@@ -22,7 +21,121 @@ class Input_file:
         
     """
     
-    def leggi_file(self, filepath):
+    def __init__(self, filepath):
+        
+        self.filepath=filepath
+        
+        
+    def crea_labirinto_json(dict):
+        """
+        
+        Metodo che crea il labirinto a partire dal dizionario generato dalla lettura 
+        del file con estensione .json
+        
+        Parameters
+        ----------
+        dict: dict
+            prende in ingresso il dizionario con le caratteristiche del labirinto
+
+        Returns
+        -------
+        Labirinto: array 
+        Partenze: list
+        Destinazioni: list
+
+        """
+        #creo una matrice numpy di soli 1, con altezza e larghezza specificate nel dizionario
+        maze= np.full((dict['altezza'], dict['larghezza']), 1.)
+        # creo la lista con le partenze specificate nel dizionario
+        partenze=dict['iniziali']
+        # creo la lista con le destinazioni specificate nel dizionario
+        destinazioni=dict['finale']
+        
+        # creo le pareti sostiuendo gli 1 con il valore NaN
+        for i in range(len(dict['pareti'])):
+            if dict['pareti'][i]['orientamento']=='H':
+                indice1=int(dict['pareti'][i]['posizione'][0])
+                indice2=int(dict['pareti'][i]['posizione'][1])
+                indice3=int(dict['pareti'][i]['posizione'][1])+int(dict['pareti'][i]['lunghezza'])
+                maze[indice1,indice2:indice3]=np.nan
+            else:
+                indice1=int(dict['pareti'][i]['posizione'][0])
+                indice2=int(dict['pareti'][i]['posizione'][0])+int(dict['pareti'][i]['lunghezza'])
+                indice3=int(dict['pareti'][i]['posizione'][1])
+                maze[indice1:indice2,indice3]=np.nan
+                
+        # sostuisco le posizioni specificate nel dizioanrio con il costo 
+        for i in range(len(dict['costi'])):
+            posizione_orizzontale=dict['costi'][i][0]
+            posizione_verticale=dict['costi'][i][1]
+            maze[posizione_orizzontale,posizione_verticale]=float(dict['costi'][i][2])
+        return (maze, partenze, destinazioni)
+    
+    def crea_labirinto_tiff(img_array):
+        
+        """
+        Metodo che crea il labirinto a partire dall'array generato dalla lettura 
+        del file con estensione .tiff
+        
+        Parameters
+        ----------
+        img_array : array
+              Prende in ingresso l'array tridimensionale restituito da leggi_file_tiff
+              
+              Legenda colori:
+                  - [255 255 255]: pixel bianchi, sono posizioni che non assegnano punti, costo pari a 1
+                  - [0 0 0]: pixel neri, sono le pareti a cui viene associato valore NaN
+                  - [0 255 0]: pixel verdi,indica la posizione di partenze del labirinto, costo pari a 0
+                  - [255 0 0]: Corrisponde al colore rosso, indica una posizione di destinazine del labirinto, costo pari a 0. 
+                  - [16 16 16], [32 32 32], [48 48 48], ..., [240 240 240]: sono valori di grigio, rappresentati da diverse 
+                  tonalità di colore.Ciascuno di essi viene assegnato a un costo specifico compreso tra 1.0 e 15.0.
+
+        Returns
+        -------
+        Labirinto: array
+        Partenze: list
+        Destinazioni: list
+        
+        """
+        legenda_colori={'[255 255 255]':1.,'[0 0 0]':np.nan,'[0 255 0]':0.,'[255 0 0]':0.,
+                         '[16 16 16]':1.,'[32 32 32]':2.,'[48 48 48]':3.,'[64 64 64]':4.,'[80 80 80]':5.,
+                         '[96 96 96]':6.,'[112 112 112]':7.,'[128 128 128]':8.,'[144 144 144]':9.,'[160 160 160]':10.,
+                         '[176 176 176]':11.,'[192 192 192]':12.,'[208 208 208]':13.,'[224 224 224]':14.,'[240 240 240]':15.}
+        
+        
+        # ottengo le dimensioni del labirinto
+        forma_lab = img_array.shape
+        # creo il labirinto utilizzando le dimensioni dell'array
+        maze = np.full((forma_lab[0],forma_lab[1]),np.empty)
+        
+        partenze=[]
+        destinazioni=[]
+        for i in range(forma_lab[0]):
+            for j in range(forma_lab[1]):
+                
+                indice = f'[{img_array[i][j][0]} {img_array[i][j][1]} {img_array[i][j][2]}]'
+                maze[i,j] = legenda_colori[indice]
+                
+                # Se il pixel è rosso, indica una posizione di destinazione del labirinto: 
+                    #inserisco la coordinata nella lista destinazioni
+                if indice =='[255 0 0]':
+                    coordinate=[]
+                    coordinate.append(i)
+                    coordinate.append(j)
+                    destinazioni.append(coordinate)
+                    
+                # Se il pixel è verde, indica una posizione di partenza del labirinto: 
+                    #inserisco la coordinata nella lista partenze
+                elif indice =='[0 255 0]':
+                    coordinate=[]
+                    coordinate.append(i)
+                    coordinate.append(j)
+                    partenze.append(coordinate)
+        
+        return (maze, partenze, destinazioni)
+    
+    
+    def leggi_file(self):
        
         """
         Metodo che restituisce il labirinto sotto forma di dizionario o array, in base
@@ -40,7 +153,7 @@ class Input_file:
             
         """
         #splittp la stringa filepath per isolare il nome del file e il formato
-        percorso,estensioneFile = os.path.splitext(filepath)
+        percorso,estensioneFile = os.path.splitext(self.filepath)
         percorsolist=percorso.split('/')
         nome=percorsolist[2]
         nomefile=nome+estensioneFile
@@ -48,27 +161,25 @@ class Input_file:
         #controlla che il nome del file sia all'interno della cartella 
         if nomefile in lista_file:
             if estensioneFile == '.json':
-                dictionary=Input_file.leggi_file_json(self,filepath)
+                dictionary=Input_file.leggi_file_json(self)
                 #richiamo diretto il metodo per creare il labirinto da file json
-                lb=Labirinto
-                (labirinto, partenze, destinazioni)=lb.crea_labirinto_json(self,dictionary)
+                (labirinto, partenze, destinazioni)=Input_file.crea_labirinto_json(dictionary)
                 return (labirinto, partenze, destinazioni)
             elif estensioneFile == '.tiff':
-                img_array =Input_file.leggi_file_tiff(self, filepath)
+                img_array =Input_file.leggi_file_tiff(self)
                 #richiamo diretto il metodo per creare il labirinto da file tiff
-                lb=Labirinto
-                (labirinto, partenze, destinazioni)=lb.crea_labirinto_tiff(self,img_array)
+                (labirinto, partenze, destinazioni)=Input_file.crea_labirinto_tiff(img_array)
                 return (labirinto, partenze, destinazioni)
         #se il file non si trova all'interno della cartella indata, richiedo di nuovo l'input e richiamo il metodo
         else:
             lista_file = os.listdir('./indata/')
             print(lista_file)
             filepath='./indata/'+str(input('il file cercato non è presente nella cartella. Prova con un altro nome: '))
-            return Input_file.leggi_file(self, filepath)
+            return Input_file.leggi_file(filepath)
 
         
         
-    def leggi_file_json(self, filepath):
+    def leggi_file_json(self):
        
         """
         Metodo che restituisce il dizionario contenente le caratteristiche del labirinto
@@ -84,12 +195,12 @@ class Input_file:
         
         """
         
-        with open(filepath) as file:
+        with open(self.filepath) as file:
             dictionary = json.load(file)
         return dictionary 
     
     
-    def leggi_file_tiff(self,filepath):
+    def leggi_file_tiff(self):
         
         """
         Metodo che restituisce l'immagine contenuta nel file attraverso un array tridimensionale, nel quale le tre 
@@ -110,10 +221,9 @@ class Input_file:
         
         """
      
-        with Image.open(filepath) as img:
+        with Image.open(self.filepath) as img:
             # Converte l'immagine in una matrice NumPy
             img_array = np.array(img)
             return img_array
         
-    
-    
+       
