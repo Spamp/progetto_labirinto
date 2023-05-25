@@ -78,7 +78,8 @@ class Labirinto:
                         lunghezza_cammino.append(distance+(len(cammino_minimo)-1))
                     else:
                         raise ValueError("Non esiste un percorso possibile fra", nodo_p, "e", nodo_d)
-                        
+                else:
+                    raise ValueError("Il nodo", nodo_p, "oppure il nodo", nodo_d, "non sono presenti nel grafo")
         return cammini_minimi, lunghezza_cammino
     
     
