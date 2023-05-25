@@ -76,6 +76,8 @@ class Labirinto:
                         distance, cammino_minimo = nx.single_source_dijkstra(grafo, source=nodo_p, target=nodo_d, weight ='weight')
                         cammini_minimi.append(cammino_minimo)
                         lunghezza_cammino.append(distance+(len(cammino_minimo)-1))
+                    else:
+                        raise ValueError("Non esiste un percorso possibile fra", nodo_p, "e", nodo_d)
                         
         return cammini_minimi, lunghezza_cammino
     
