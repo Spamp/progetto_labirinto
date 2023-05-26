@@ -47,5 +47,12 @@ I livelli di grigio possibili sono:
 240 che assegna un costo pari a 15
 
 # SVOLGIMENTO DEL PROGETTO
-Il programma implementato riceve in ingresso un file contenente le caratteristiche del labirinto, una lista di partenze e una lista di destinazioni, e fornisce in output il path del percorso di costo minimo fra i punti specificati, insieme ai costi ad essi associati.
-##INPUT
+Il programma implementato riceve in ingresso un file contenente le caratteristiche del labirinto, una lista di partenze e una lista di destinazioni, e fornisce in output il path del percorso di costo minimo fra i punti specificati, insieme al costo totale associato al percorso.
+
+## INPUT
+Il programma può ricevere in ingresso i formati .json e .tiff. Il file di input viene elaborato e traformato in un array contenente le caratteristiche del labirinto sopra specificate. 
+Il file di input può essere fornito come segue:
+
+![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/cd90ac22-7f42-4b4e-8dce-e6c273c9ca38)
+
+
