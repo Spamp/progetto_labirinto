@@ -9,12 +9,18 @@ from Labirinto import Labirinto
 
 
 def calcolatore():
+    
     """
     Metodo che richiama i metodi implementati per risolvere il labirinto
 
     Returns
     -------
-    None.
+    labirinto: array 
+    partenze: list
+    destinazioni: list
+    grafo: graph
+    shortest_path: list of tuple
+    weight: list
 
     """
     # ottieni i nomi dei file e delle cartelle nella directory

@@ -23,25 +23,44 @@ class Input_file:
     
     def __init__(self, filepath):
         
-        self.filepath=filepath
+        """
+        Costruttore della classe Input_file
+    
+        Parameters
+        ----------
+        filepath : str
+            Contiene il path del file da leggere
+
+        Returns
+        -------
+        None.
+
+        """
+        
+        self.filepath = filepath
         
         
     def crea_labirinto_json(dict):
+        
         """
         
-        Metodo che crea il labirinto a partire dal dizionario generato dalla lettura 
-        del file con estensione .json
+        Metodo che crea il labirinto a partire dal file con estensione .json
         
         Parameters
         ----------
         dict: dict
-            prende in ingresso il dizionario con le caratteristiche del labirinto
+            prende in ingresso un dizionario con le caratteristiche del labirinto
 
         Returns
         -------
-        Labirinto: array 
-        Partenze: list
-        Destinazioni: list
+        maze: array
+            Restituisce il labirinto sotto forma di array di float
+        
+        partenze: list
+            Restituisce la lista dei punti di partenza del labirinto
+            
+        destinazioni: list
+            Restituisce la lista dei punti di destinazione del labirinto
 
         """
         #creo una matrice numpy di soli 1, con altezza e larghezza specificate nel dizionario
@@ -74,13 +93,12 @@ class Input_file:
     def crea_labirinto_tiff(img_array):
         
         """
-        Metodo che crea il labirinto a partire dall'array generato dalla lettura 
-        del file con estensione .tiff
+        Metodo che crea il labirinto a partire dal file con estensione .tiff
         
         Parameters
         ----------
         img_array : array
-              Prende in ingresso l'array tridimensionale restituito da leggi_file_tiff
+              Prende in ingresso un array tridimensionale con le caratteristiche del labirinto
               
               Legenda colori:
                   - [255 255 255]: pixel bianchi, sono posizioni che non assegnano punti, costo pari a 1
@@ -92,11 +110,17 @@ class Input_file:
 
         Returns
         -------
-        Labirinto: array
-        Partenze: list
-        Destinazioni: list
+        maze: array
+            Restituisce il labirinto sotto forma di array di float
+            
+        partenze: list
+            Restituisce la lista dei punti di partenza del labirinto
+            
+        destinazioni: list
+            Restituisce la lista dei punti di destinazione del labirinto
         
         """
+        
         legenda_colori={'[255 255 255]':1.,'[0 0 0]':np.nan,'[0 255 0]':0.,'[255 0 0]':0.,
                          '[16 16 16]':1.,'[32 32 32]':2.,'[48 48 48]':3.,'[64 64 64]':4.,'[80 80 80]':5.,
                          '[96 96 96]':6.,'[112 112 112]':7.,'[128 128 128]':8.,'[144 144 144]':9.,'[160 160 160]':10.,
@@ -149,20 +173,22 @@ class Input_file:
 
         Returns
         -------
-        (labirinto, partenze, destinazioni):matrice numpy con i pesi del labirinto, lista di liste delle coordinate
+        (labirinto, partenze, destinazioni): matrice numpy con i pesi del labirinto, lista di liste delle coordinate
                                             di partenza e lista di liste con le coordinate di destinazione
             
         """
-        #splittp la stringa filepath per isolare il nome del file e il formato
+        #splitto la stringa filepath per isolare il nome del file e il formato
         percorso,estensioneFile = os.path.splitext(self.filepath)
         percorsolist=percorso.split('/')
         nome=percorsolist[2]
         nomefile=nome+estensioneFile
         lista_file = os.listdir('./indata/')
+        
         #controlla che il nome del file sia all'interno della cartella 
         if nomefile in lista_file:
             if estensioneFile == '.json':
                 dictionary=Input_file.leggi_file_json(self)
+                
                 #richiamo diretto il metodo per creare il labirinto da file json
                 (labirinto, partenze, destinazioni)=Input_file.crea_labirinto_json(dictionary)
                 return (labirinto, partenze, destinazioni)
@@ -193,6 +219,7 @@ class Input_file:
         Returns
         -------
         dictionary : dict
+            Restituisce un dizionario con le caratteristiche del labirinto
         
         """
         
@@ -219,6 +246,7 @@ class Input_file:
         Returns
         -------
         img_array : array
+            Restituisce un array con le caratteristiche del labirinto
         
         """
      
