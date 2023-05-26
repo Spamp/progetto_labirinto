@@ -93,7 +93,8 @@ class Labirinto:
             Restituisce una lista di liste contenenti il peso totale del cammino
 
         """
-        
+        #richiamiamo direttamento il metodo che crea il grafo
+        Labirinto.crea_grafo(self)
         # Trasformo ogni sottolista in una tupla
         partenze=[tuple(sublist) for sublist in self.partenze]
         partenze=tuple(partenze)

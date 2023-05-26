@@ -72,18 +72,20 @@ class Input_file:
         
         # creo le pareti sostiuendo gli 1 con il valore NaN
         for i in range(len(dict['pareti'])):
+            #distingue se la parete è orizzontale grazie al paramtro H
             if dict['pareti'][i]['orientamento']=='H':
                 indice1=int(dict['pareti'][i]['posizione'][0])
                 indice2=int(dict['pareti'][i]['posizione'][1])
                 indice3=int(dict['pareti'][i]['posizione'][1])+int(dict['pareti'][i]['lunghezza'])
                 maze[indice1,indice2:indice3]=np.nan
+            #altrimentiè verticale, grazie al parametro V
             else:
                 indice1=int(dict['pareti'][i]['posizione'][0])
                 indice2=int(dict['pareti'][i]['posizione'][0])+int(dict['pareti'][i]['lunghezza'])
                 indice3=int(dict['pareti'][i]['posizione'][1])
                 maze[indice1:indice2,indice3]=np.nan
                 
-        # sostuisco le posizioni specificate nel dizioanrio con il costo 
+        # sostuisco le posizioni specificate nel dizioanrio con il costo specificato nella terza posizione 
         for i in range(len(dict['costi'])):
             posizione_orizzontale=dict['costi'][i][0]
             posizione_verticale=dict['costi'][i][1]

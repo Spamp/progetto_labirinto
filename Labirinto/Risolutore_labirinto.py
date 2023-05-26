@@ -5,7 +5,7 @@ Created on Tue May 23 19:47:28 2023
 """
 import os
 from input_file import Input_file
-from Labirinto import Labirinto
+from labirinto import Labirinto
 
 
 def calcolatore():
@@ -35,9 +35,7 @@ def calcolatore():
     
     # creo un'istanza della classe Labirinto
     maze = Labirinto(labirinto, partenze, destinazioni)
-    # creo il grafo
-    grafo = maze.crea_grafo()
     # calcolo il cammino minimo e il peso ad esso associato
     shortest_path, weight= maze.cammino_minimo()
     
-    return (labirinto, partenze, destinazioni, grafo, shortest_path, weight)
+    return (labirinto, partenze, destinazioni, shortest_path, weight)
