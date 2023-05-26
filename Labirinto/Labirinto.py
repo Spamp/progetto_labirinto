@@ -126,7 +126,10 @@ class Labirinto:
                         weight_tot.append(distance+(len(cammino_minimo)-1))
                     else:
                         # se non esiste un path fra i nodi considerati, restituisce un messaggio di errore
-                        raise ValueError("Non esiste un percorso possibile fra", nodo_p, "e", nodo_d)
+                        #raise ValueError("Non esiste un percorso possibile fra", nodo_p, "e", nodo_d)
+                        #inserico un cammino vuoto all'interno dei cammmini vuoti
+                        cammini_minimi.append(())
+                        weight_tot.append((f"Non esiste un percorso possibile fra {nodo_p} e {nodo_d}"))
                 else:
                     # se i nodi considerati non appartengono al grafo, restituisce un messaggio di errore
                     raise ValueError("Il nodo", nodo_p, "oppure il nodo", nodo_d, "non sono presenti nel grafo")
