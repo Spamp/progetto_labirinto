@@ -4,6 +4,7 @@ Created on Fri May 26 18:04:49 2023
 
 """
 import numpy as np
+from PIL import Image
 
 class Output_file:
     """
@@ -28,23 +29,23 @@ class Output_file:
         
     def crea_immagine_rgb(self,labirinto, partenze, destinazioni, cammini_minimi):
         """
+        metodo che a partire dalle liste descrttive del labirinto crea un lista che per ogni casella del
+        labirinto pone una tupla di tre componenti che corrispondono ai valori rgb del pixel corrispondente.
         
 
         Parameters
         ----------
-        labirinto : TYPE
-            DESCRIPTION.
-        partenze : TYPE
-            DESCRIPTION.
-        destinazioni : TYPE
-            DESCRIPTION.
-        cammini_minimi : TYPE
-            DESCRIPTION.
+        labirinto : array
+
+        partenze : list of lists
+   
+        destinazioni : list of lists
+        
+        cammini_minimi : list of tuples
 
         Returns
         -------
-        immagine_rgb : TYPE
-            DESCRIPTION.
+        immagine_rgb : list
 
         """
         altezza, larghezza = labirinto.shape
@@ -64,4 +65,18 @@ class Output_file:
         immagine_rgb[partenze[0]][partenze[1]]=(0,255,0)
         immagine_rgb[destinazioni[0][0]][destinazioni[0][1]]=(255,0,0)
         return immagine_rgb
+    
+    def salva_immagine_jpg(self, immagine_rgb,numero_immagine):
+        #creo percorso dove salvare l'immagine
+        percorso_immagine= self.percorso_file+f'{numero_immagine}.jpeg'
+        dimensioni= immagine_rgb.shape
+        altezza=dimensioni[0]
+        larghezza =dimensioni[1]
+        #creazione dell'immagine dal lista di valori rgb
+        immagine = Image.fromarray(immagine_rgb)
+        #imposta la grandezza dell'immagine jpg di modo che sia la stessa del labirinto
+        area_visualizzazione=(0,0,larghezza,altezza)
+        immagine_cropped = immagine.crop(area_visualizzazione)
+        #salva l'immagine nel percorso specificato
+        immagine_cropped.save(percorso_immagine, "JPEG")
         

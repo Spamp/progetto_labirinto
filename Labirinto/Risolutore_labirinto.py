@@ -43,12 +43,13 @@ def calcolatore():
     # calcolo il cammino minimo e il peso ad esso associato
     shortest_path, weight= maze.cammino_minimo()
     outfile= Output_file(nome_labirinto)
-    lista_immagine_rgb=[]
+
     #scorro le partenze per avere un matrice rgb per ogni partenza e percorso associato
     for i in range(len(partenze)):
-        immagine_rgb_per_partenza = outfile.crea_immagine_rgb(labirinto, partenze[i],destinazioni, shortest_path[i])
-        lista_immagine_rgb.append(immagine_rgb_per_partenza)
+        immagine_rgb = outfile.crea_immagine_rgb(labirinto, partenze[i],destinazioni, shortest_path[i])
+        outfile.salva_immagine_jpg(immagine_rgb, i)
+               
     
     
     
-    return (labirinto, partenze, destinazioni, shortest_path, weight,lista_immagine_rgb)
+    return (labirinto, partenze, destinazioni, shortest_path, weight)
