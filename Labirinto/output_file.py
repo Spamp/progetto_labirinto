@@ -3,6 +3,7 @@
 Created on Fri May 26 18:04:49 2023
 
 """
+import os
 import numpy as np
 from PIL import Image
 
@@ -25,13 +26,49 @@ class Output_file:
         """
         self.percorso_cartella='./output'
         self.nome_labirinto=nome_labirinto
-        self.percorso_file=self.percorso_cartella+'/'+self.nome_labirinto
+        self.percorso_file=os.path.join(self.percorso_cartella,self.nome_labirinto)
+        
         
     def crea_immagini_output(self,labirinto, partenze,destinazioni, shortest_path):
+        """
+        metodo che richiama direttamete i metedi di creazione e salvataggio delle immagini rappresentanti
+        le soluzioni del labirinto
+
+        Parameters
+        ----------
+        labirinto : array
+
+        partenze : list of lists
+   
+        destinazioni : list of lists
+        
+        cammini_minimi : list of tuples
+
+        Returns
+        -------
+        None.
+
+        """
+        Output_file.reset_uotput_file(self)
         #scorro le partenze per avere un matrice rgb per ogni partenza e percorso associato
         for i in range(len(partenze)):
             immagine_rgb = Output_file.crea_immagine_rgb(self,labirinto, partenze[i],destinazioni, shortest_path[i])
             Output_file.salva_immagine_jpg(self,immagine_rgb, i)
+    
+    def reset_uotput_file(self):
+        """
+        metodo che controlla se la cartella di uotput ha dei file al suo interno e li elimina nel caso ci
+        siano
+
+        Returns
+        -------
+        None.
+
+        """
+        elenco_file = os.listdir(self.percorso_cartella)
+        for file in elenco_file:
+            percorso_file = os.path.join(self.percorso_cartella, file)  # Crea il percorso completo al file
+            os.remove(percorso_file)
         
     def crea_immagine_rgb(self,labirinto, partenze, destinazioni, cammini_minimi):
         """
@@ -73,6 +110,21 @@ class Output_file:
         return immagine_rgb
     
     def salva_immagine_jpg(self, immagine_rgb,numero_immagine):
+        """
+        metodo che salva l'immmagine rgb in input e li salva con un nome diverso
+        cambiato dal numero_immagine
+
+        Parameters
+        ----------
+        immagine_rgb : list
+        
+        numero_immagine : intero
+
+        Returns
+        -------
+        None.
+
+        """
         #creo percorso dove salvare l'immagine
         percorso_immagine= self.percorso_file+f'_{numero_immagine}.jpeg'
         dimensioni= immagine_rgb.shape
