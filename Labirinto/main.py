@@ -11,4 +11,4 @@ if __name__ == "__main__":
     
     """
     
-    (labirinto, partenze, destinazioni, shortest_path, weight) = calcolatore()
+    (labirinto, partenze, destinazioni, shortest_path, weight,lista_immagine_rgb) = calcolatore()

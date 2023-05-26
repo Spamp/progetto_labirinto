@@ -125,10 +125,9 @@ class Labirinto:
                         # aggiungo alla lista dei pesi il peso totale, dato dalla somma della lunghezza del cammino e dei pesi incontrati
                         weight_tot.append(distance+(len(cammino_minimo)-1))
                     else:
-                        # se non esiste un path fra i nodi considerati, restituisce un messaggio di errore
-                        #raise ValueError("Non esiste un percorso possibile fra", nodo_p, "e", nodo_d)
-                        #inserico un cammino vuoto all'interno dei cammmini vuoti
+                        #inserico un cammino vuoto all'interno della lista dei cammini se non esiste un percorso tra i nodi specificati
                         cammini_minimi.append(())
+                        #inserisco un messaggio che non esiste un percorso e quindi neanche un peso nella lista di pesi, mettendolo nell'indice corrispondente al cammino vuoto 
                         weight_tot.append((f"Non esiste un percorso possibile fra {nodo_p} e {nodo_d}"))
                 else:
                     # se i nodi considerati non appartengono al grafo, restituisce un messaggio di errore
