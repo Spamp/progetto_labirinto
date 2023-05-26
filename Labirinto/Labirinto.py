@@ -6,7 +6,6 @@ Created on Tue May 23 13:51:57 2023
 import numpy as np
 import networkx as nx
 
-
 class Labirinto:
     """
     Classe che implementa il labirinto
@@ -14,10 +13,29 @@ class Labirinto:
     """
         
     def __init__(self, labirinto, partenze, destinazioni):
+        
+        """
+        Costruttore della classe Labirinto
+
+        Parameters
+        ----------
+        labirinto : TYPE
+            DESCRIPTION.
+        partenze : TYPE
+            DESCRIPTION.
+        destinazioni : TYPE
+            DESCRIPTION.
+
+        Returns
+        -------
+        None.
+
+        """
         self.labirinto = labirinto
         self.partenze = partenze
         self.destinazioni = destinazioni
         self.righe, self.colonne = labirinto.shape
+        self.grafo=()
         
         
     def crea_grafo(self):
@@ -31,6 +49,7 @@ class Labirinto:
         """
         #creo un'istanza del grafo
         G = nx.Graph()
+        self.grafo=G
         for i, row in enumerate(self.labirinto): #i tiene traccia della riga, row contiene la riga
             for j, val in enumerate(row): #j tiene conto della colonna, val del valore della cella
                 # se l'elemento della cella non è nan 
@@ -47,11 +66,11 @@ class Labirinto:
                         G.add_edge((i, j), (i+1, j), weight=val)
                     if j < self.colonne-1 and not np.isnan(self.labirinto[i, j+1]):
                         G.add_edge((i, j), (i, j+1), weight= val)
-        return G
+        return self.grafo
     
     
     
-    def cammino_minimo(self, grafo):
+    def cammino_minimo(self):
         
         # Trasforma ogni sottolista in una tupla
         partenze=[tuple(sublist) for sublist in self.partenze]
@@ -69,11 +88,11 @@ class Labirinto:
         for nodo_p in partenze_set:
             for nodo_d in destinazioni_set:
                 # verifico che i nodi di partenza e destinazione siano nel grafo
-                if grafo.has_node(nodo_p) and grafo.has_node(nodo_d):
+                if self.grafo.has_node(nodo_p) and self.grafo.has_node(nodo_d):
                     # verifico che esista un path possibile fra nodo di partenza e destinazione 
-                    if nx.has_path(grafo,nodo_p,nodo_d):
+                    if nx.has_path(self.grafo,nodo_p,nodo_d):
                         #Returns the shortest weighted path from source to target in G.
-                        distance, cammino_minimo = nx.single_source_dijkstra(grafo, source=nodo_p, target=nodo_d, weight ='weight')
+                        distance, cammino_minimo = nx.single_source_dijkstra(self.grafo, source=nodo_p, target=nodo_d, weight ='weight')
                         cammini_minimi.append(cammino_minimo)
                         lunghezza_cammino.append(distance+(len(cammino_minimo)-1))
                     else:

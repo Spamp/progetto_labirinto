@@ -105,6 +105,7 @@ class Input_file:
         
         # ottengo le dimensioni del labirinto
         forma_lab = img_array.shape
+        
         # creo il labirinto utilizzando le dimensioni dell'array
         maze = np.full((forma_lab[0],forma_lab[1]),np.empty)
         
