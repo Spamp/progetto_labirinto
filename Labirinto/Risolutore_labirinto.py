@@ -27,12 +27,14 @@ def calcolatore():
     # ottieni i nomi dei file e delle cartelle nella directory
     lista_file = os.listdir('./indata/')
     print(lista_file)
-    
+    nomefile=str(input('Inserisci il nome del file da leggere con formato tiff o json tra uno di quelli elencati:  '))
+    nomelist=nomefile.split('.')
+    nome_labirinto=nomelist[0]
     #Chiedo il file di input e richiamo la funzione di lettura
-    filepath = './indata/'+str(input('Inserisci il nome del file da leggere con formato tiff o json tra uno di quelli elencati:  '))
-    percorso,estensioneFile = os.path.splitext(filepath)
-    percorsolist=percorso.split('/')
-    nome_labirinto=percorsolist[2]
+    filepath = './indata/'+nomefile
+    
+    
+   
     
     
     input_file=Input_file(filepath)
@@ -44,10 +46,8 @@ def calcolatore():
     shortest_path, weight= maze.cammino_minimo()
     outfile= Output_file(nome_labirinto)
 
-    #scorro le partenze per avere un matrice rgb per ogni partenza e percorso associato
-    for i in range(len(partenze)):
-        immagine_rgb = outfile.crea_immagine_rgb(labirinto, partenze[i],destinazioni, shortest_path[i])
-        outfile.salva_immagine_jpg(immagine_rgb, i)
+    outfile.crea_immagini_output(labirinto, partenze, destinazioni, shortest_path)
+    
                
     
     

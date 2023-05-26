@@ -27,6 +27,12 @@ class Output_file:
         self.nome_labirinto=nome_labirinto
         self.percorso_file=self.percorso_cartella+'/'+self.nome_labirinto
         
+    def crea_immagini_output(self,labirinto, partenze,destinazioni, shortest_path):
+        #scorro le partenze per avere un matrice rgb per ogni partenza e percorso associato
+        for i in range(len(partenze)):
+            immagine_rgb = Output_file.crea_immagine_rgb(self,labirinto, partenze[i],destinazioni, shortest_path[i])
+            Output_file.salva_immagine_jpg(self,immagine_rgb, i)
+        
     def crea_immagine_rgb(self,labirinto, partenze, destinazioni, cammini_minimi):
         """
         metodo che a partire dalle liste descrttive del labirinto crea un lista che per ogni casella del
@@ -68,7 +74,7 @@ class Output_file:
     
     def salva_immagine_jpg(self, immagine_rgb,numero_immagine):
         #creo percorso dove salvare l'immagine
-        percorso_immagine= self.percorso_file+f'{numero_immagine}.jpeg'
+        percorso_immagine= self.percorso_file+f'_{numero_immagine}.jpeg'
         dimensioni= immagine_rgb.shape
         altezza=dimensioni[0]
         larghezza =dimensioni[1]
