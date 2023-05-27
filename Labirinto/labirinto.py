@@ -151,6 +151,7 @@ class Labirinto:
         cammini = []
         len_cammini=[]
         peso_archi=[]
+        weight_tot=[]
         
         for partenza in partenze:
             for destinazione in destinazioni:
@@ -161,11 +162,13 @@ class Labirinto:
                             len_cammini.append(len(cammino)-1)
                             peso_archi_cammino = sum(grafo[u][v]['weight'] for u, v in zip(cammino[:-1], cammino[1:]))
                             peso_archi.append(peso_archi_cammino)
+        weight_tot=[x+y for x,y in zip(len_cammini, peso_archi)]
+                            
                             
         #creo un dataFrame con i risultati di tutti i cammini
         serie_cammini = pd.Series(cammini)
         serie_pesi = pd.Series(len_cammini)
         dataframe = pd.DataFrame({'Cammini': serie_cammini, 'Pesi': serie_pesi})
-        return  dataframe, peso_archi
+        return  dataframe, peso_archi, weight_tot
     
     
