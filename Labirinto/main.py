@@ -11,4 +11,4 @@ if __name__ == "__main__":
     
     """
     
-    (labirinto, partenze, destinazioni, shortest_path, weight, dataframe, peso_archi_cammino, weight_tot) = calcolatore()
+    (labirinto, partenze, destinazioni, shortest_path, weight, dataframe) = calcolatore()

@@ -155,20 +155,29 @@ class Labirinto:
         
         for partenza in partenze:
             for destinazione in destinazioni:
+                
+                # verifico che i nodi di partenza e destinazione siano nel grafo
                 if self.grafo.has_node(partenza) and self.grafo.has_node(destinazione):
-                    if nx.has_path(grafo,partenza,destinazione):
+                    
+                    # verifico che esista un path possibile fra nodo di partenza e destinazione
+                    if nx.has_path(self.grafo, partenza, destinazione):
+                        # calcolo tutti i cammini possibili fra il nodo di partenza e quello di destinazione (cutoff=None, è la profondità massima di esplorazione)
                         for cammino in list(nx.all_simple_paths(self.grafo, source=partenza, target=destinazione, cutoff=None)):
+                            # aggiungo il cammino trovato alla lista dei cammini
                             cammini.append(cammino)
+                            # aggiungo la lunghezza del cammino alla lista len_cammini
                             len_cammini.append(len(cammino)-1)
+                            # per ogni cammino trovato, calcolo il peso del path
                             peso_archi_cammino = sum(grafo[u][v]['weight'] for u, v in zip(cammino[:-1], cammino[1:]))
                             peso_archi.append(peso_archi_cammino)
+        
+        # calcolo il costo totale del cammino, dato dalla somma dei pesi e della lunghezza del cammino
         weight_tot=[x+y for x,y in zip(len_cammini, peso_archi)]
                             
-                            
-        #creo un dataFrame con i risultati di tutti i cammini
+        #creo un dataFrame con i risultati di tutti i cammini con i costi associati
         serie_cammini = pd.Series(cammini)
-        serie_pesi = pd.Series(len_cammini)
-        dataframe = pd.DataFrame({'Cammini': serie_cammini, 'Pesi': serie_pesi})
-        return  dataframe, peso_archi, weight_tot
+        serie_costi = pd.Series(weight_tot)
+        dataframe = pd.DataFrame({'Tutti i cammini possibili': serie_cammini, 'Costo': serie_costi})
+        return  dataframe
     
     
