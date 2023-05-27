@@ -64,7 +64,7 @@ class Input_file:
 
         """
         #creo una matrice numpy di soli 1, con altezza e larghezza specificate nel dizionario
-        maze= np.full((dict['altezza'], dict['larghezza']), 1.)
+        maze= np.full((dict['altezza'], dict['larghezza']), 0.)
         # creo la lista con le partenze specificate nel dizionario
         partenze=dict['iniziali']
         # creo la lista con le destinazioni specificate nel dizionario

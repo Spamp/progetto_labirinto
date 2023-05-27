@@ -5,6 +5,7 @@ Created on Tue May 23 13:51:57 2023
 """
 import numpy as np
 import networkx as nx
+import pandas as pd
 
 class Labirinto:
     """
@@ -134,5 +135,24 @@ class Labirinto:
                     raise ValueError("Il nodo", nodo_p, "oppure il nodo", nodo_d, "non sono presenti nel grafo")
                     
         return cammini_minimi, weight_tot
+    
+    def trova_tutti_i_cammini(self):
+        
+        # creo l'oggetto grafo
+        grafo=Labirinto.crea_grafo(self)
+        
+        # Trasforma ogni sottolista in una tupla
+        partenze=[tuple(sublist) for sublist in self.partenze]
+        partenze=tuple(partenze)
+        destinazioni=[tuple(sublist) for sublist in self.destinazioni]
+        destinazioni=tuple(destinazioni)
+        
+        #Calcolo tutti i possibili cammini fra partenza/e e destinazione/i
+        cammini = []
+        peso_cammini=[]
+        peso_archi=[]
+        
+        
+        pass
     
     
