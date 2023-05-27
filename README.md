@@ -25,23 +25,23 @@ I pixel bianchi sono posizioni che non assegnano punti, i pixel grigi indicano c
 
 I livelli di grigio possibili sono:
 
-16 che assegna un costo pari a 1
-32 che assegna un costo pari a 2
-48 che assegna un costo pari a 3
-64 che assegna un costo pari a 4
-80 che assegna un costo pari a 5
-96 che assegna un costo pari a 6
-112 che assegna un costo pari a 7
-128 che assegna un costo pari a 8
-144 che assegna un costo pari a 9
-160 che assegna un costo pari a 10
-176 che assegna un costo pari a 11
-192 che assegna un costo pari a 12
-208 che assegna un costo pari a 13
-124 che assegna un costo pari a 14
-240 che assegna un costo pari a 15
+- 16 che assegna un costo pari a 1
+- 32 che assegna un costo pari a 2
+- 48 che assegna un costo pari a 3
+- 64 che assegna un costo pari a 4
+- 80 che assegna un costo pari a 5
+- 96 che assegna un costo pari a 6
+- 112 che assegna un costo pari a 7
+- 128 che assegna un costo pari a 8
+- 144 che assegna un costo pari a 9
+- 160 che assegna un costo pari a 10
+- 176 che assegna un costo pari a 11
+- 192 che assegna un costo pari a 12
+- 208 che assegna un costo pari a 13
+- 124 che assegna un costo pari a 14
+- 240 che assegna un costo pari a 15
 
-## INPUT
+### ESEMPIO DI INPUT
 
 Il file di input può essere fornito come segue:
 
