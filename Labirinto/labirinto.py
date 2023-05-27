@@ -159,6 +159,10 @@ class Labirinto:
                             cammini.append(cammino)
                             len_cammini.append(len(cammino)-1)
                             
-        return  cammini , len_cammini
+        #creo un dataFrame con i risultati di tutti i cammini
+        serie_cammini = pd.Series(cammini)
+        serie_pesi = pd.Series(len_cammini)
+        dataframe = pd.DataFrame({'Cammini': serie_cammini, 'Pesi': serie_pesi})
+        return  dataframe
     
     
