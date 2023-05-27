@@ -149,10 +149,15 @@ class Labirinto:
         
         #Calcolo tutti i possibili cammini fra partenza/e e destinazione/i
         cammini = []
-        peso_cammini=[]
-        peso_archi=[]
         
         
-        pass
+        for partenza in partenze:
+            for destinazione in destinazioni:
+                if self.grafo.has_node(partenza) and self.grafo.has_node(destinazione):
+                    if nx.has_path(grafo,partenza,destinazione):
+                        for cammino in list(nx.all_simple_paths(self.grafo, source=partenza, target=destinazione, cutoff=None)):
+                            cammini.append(cammino)
+                     
+        return  cammini
     
     
