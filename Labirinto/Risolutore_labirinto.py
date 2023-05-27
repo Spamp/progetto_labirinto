@@ -32,24 +32,13 @@ def calcolatore():
     nome_labirinto=nomelist[0]
     #Chiedo il file di input e richiamo la funzione di lettura
     filepath = './indata/'+nomefile
-    
-    
-   
-    
-    
     input_file=Input_file(filepath)
     (labirinto, partenze, destinazioni)=input_file.leggi_file()
-    
     # creo un'istanza della classe Labirinto
     maze = Labirinto(labirinto, partenze, destinazioni)
     # calcolo il cammino minimo e il peso ad esso associato
     shortest_path, weight= maze.cammino_minimo()
     outfile= Output_file(nome_labirinto)
-
     outfile.crea_immagini_output(labirinto, partenze, destinazioni, shortest_path)
-    
-               
-    
-    
     
     return (labirinto, partenze, destinazioni, shortest_path, weight)
