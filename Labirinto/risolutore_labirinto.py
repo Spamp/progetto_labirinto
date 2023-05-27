@@ -40,6 +40,6 @@ def calcolatore():
     shortest_path, weight= maze.cammino_minimo()
     outfile= Output_file(nome_labirinto)
     outfile.crea_immagini_output(labirinto, partenze, destinazioni, shortest_path)
-    cammini=maze.trova_tutti_i_cammini()
+    cammini, len_cammini=maze.trova_tutti_i_cammini()
     
-    return (labirinto, partenze, destinazioni, shortest_path, weight, cammini)
+    return (labirinto, partenze, destinazioni, shortest_path, weight, cammini, len_cammini)
