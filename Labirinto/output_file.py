@@ -6,6 +6,7 @@ Created on Fri May 26 18:04:49 2023
 import os
 import numpy as np
 from PIL import Image
+import json
 
 class Output_file:
     """
@@ -27,6 +28,8 @@ class Output_file:
         self.percorso_cartella='./output'
         self.nome_labirinto=nome_labirinto
         self.percorso_file=os.path.join(self.percorso_cartella,self.nome_labirinto)
+    
+    
         
         
     def crea_immagini_output(self,labirinto, partenze,destinazioni, shortest_path):
@@ -54,7 +57,28 @@ class Output_file:
         for i in range(len(partenze)):
             immagine_rgb = Output_file.crea_immagine_rgb(self,labirinto, partenze[i],destinazioni, shortest_path[i])
             Output_file.salva_immagine_jpg(self,immagine_rgb, i)
-    
+            
+    def crea_file_json(self, dizionario,nome_file):
+        """
+        metodo che crea e salva nella cartella output dei file json da dizionari messi in input
+
+        Parameters
+        ----------
+        dizionario : dict
+        
+        nome_file : string
+
+        Returns
+        -------
+        None.
+
+        """
+        #creo il percorso dove salvare il file json
+        percorso_file = os.path.join(self.percorso_cartella, f"{nome_file} di {self.nome_labirinto}.json")
+       #apro il file per scriverci sopra
+        with open(percorso_file, 'w') as file:
+            json.dump(dizionario, file)
+           
     def reset_uotput_file(self):
         """
         metodo che controlla se la cartella di uotput ha dei file al suo interno e li elimina nel caso ci
@@ -137,4 +161,6 @@ class Output_file:
         immagine_cropped = immagine.crop(area_visualizzazione)
         #salva l'immagine nel percorso specificato
         immagine_cropped.save(percorso_immagine, "JPEG")
+        
+    
         
