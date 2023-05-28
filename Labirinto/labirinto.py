@@ -5,7 +5,8 @@ Created on Tue May 23 13:51:57 2023
 """
 import numpy as np
 import networkx as nx
-import pandas as pd
+
+
 
 class Labirinto:
     """
@@ -36,6 +37,7 @@ class Labirinto:
         self.destinazioni = destinazioni
         self.righe, self.colonne = labirinto.shape
         self.grafo=()
+        self.cammini={}
         
         
     def crea_grafo(self):
@@ -137,9 +139,20 @@ class Labirinto:
         return cammini_minimi, weight_tot
     
     def trova_tutti_i_cammini(self):
+        """
+        metodo che dal grafo creato in precendenza, cerca tutti i cammini possibili tra le partenze e
+        destinazioni. Ritorna un dizionario con una lista di tuple di tutti i cammini possibili ed una 
+        lista di tutti i costi associati per indice delle liste.
+
+        Returns
+        -------
+        dizionario.
+
+        """
         
         # creo l'oggetto grafo
         grafo=Labirinto.crea_grafo(self)
+        
         
         # Trasforma ogni sottolista in una tupla
         partenze=[tuple(sublist) for sublist in self.partenze]
@@ -175,10 +188,28 @@ class Labirinto:
         # calcolo il costo totale del cammino, dato dalla somma dei pesi e della lunghezza del cammino
         weight_tot=[x+y for x,y in zip(len_cammini, peso_archi)]
                             
-        #creo un dataFrame con i risultati di tutti i cammini con i costi associati
-        serie_cammini = pd.Series(cammini)
-        serie_costi = pd.Series(weight_tot)
-        dataframe = pd.DataFrame({'Tutti i cammini possibili': serie_cammini, 'Costo': serie_costi})
-        return  dataframe
+        #creo un dizionario con i risultati di tutti i cammini con i costi associati per indice
+        dizionario={}
+        dizionario['tutti i cammini possibili']=cammini
+        dizionario['costo']=weight_tot
+        self.cammini=dizionario
+        return  self.cammini
     
+    def get_attributo(self):
+        """
+        metodo che ritorna l'attributo della classe cammini, creato in precendenza dal metodo
+        trova_tutti_i_cammini
+
+        Returns
+        -------
+        TYPE
+            dizionario
+
+        """
+        return self.cammini
+    
+    
+    
+
+        
     
