@@ -49,13 +49,13 @@ class Output_file:
         None.
 
         """
-        Output_file.reset_uotput_file(self)
+        Output_file.reset_output_file(self)
         #scorro le partenze per avere un matrice rgb per ogni partenza e percorso associato
         for i in range(len(partenze)):
             immagine_rgb = Output_file.crea_immagine_rgb(self,labirinto, partenze[i],destinazioni, shortest_path[i])
             Output_file.salva_immagine_jpg(self,immagine_rgb, i)
     
-    def reset_uotput_file(self):
+    def reset_output_file(self):
         """
         metodo che controlla se la cartella di uotput ha dei file al suo interno e li elimina nel caso ci
         siano
