@@ -57,7 +57,7 @@ class Output_file:
     
     def reset_output_file(self):
         """
-        metodo che controlla se la cartella di uotput ha dei file al suo interno e li elimina nel caso ci
+        metodo che controlla se la cartella di output ha dei file al suo interno e li elimina nel caso ci
         siano
 
         Returns
