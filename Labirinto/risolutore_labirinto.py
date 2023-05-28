@@ -40,22 +40,25 @@ def calcolatore():
     maze = Labirinto(labirinto, partenze, destinazioni)
     # calcolo il cammino minimo e il peso ad esso associato
     shortest_path, weight= maze.cammino_minimo()
-    # calcolo tutti i cammini possibili fra partenza e destinazione
-    #dataframe =maze.trova_tutti_i_cammini()
-    
+    # calcolo tutti i cammini possibili fra partenza e destinazione, utilizzando un thread parallelo così
+    #da evitare che il codice si blocchi    
     thread = threading.Thread(target=maze.trova_tutti_i_cammini)
-        
+    #avvio il thread
     thread.start()
+    #blocco il codice principale per 10 secondi per dare il tempo al thread di fare tutte le sue operazioni
     time.sleep(10)
 
-    
+    #una volta svogliato il thread principale, controllo se il thread per cercare tutti i cammini è attivo
     if thread.is_alive():
+        #se è ancora attivo provo a lasciralo lavorare ancora per 30 secondi
         thread.join(timeout=30)
         print("Thread il thread non ha trovato soluzioni")
     else:
+        #se il thread si è concluso lo chiudo
         thread.join()
         print('il thread si è concluso con successo ed ha ottenuto una soluzione')
-    dataframe=maze.get_attributo()      
+    #richiedo l'attributo creato da tutti i cammini con un metodo, per evitare conflitti tra thread
+    tutti_i_cammini_semplici=maze.get_attributo()      
     
     #creo un'istanza della classe Output_file
     outfile= Output_file(nome_labirinto)
@@ -63,4 +66,4 @@ def calcolatore():
     # restituisco i percorsi trovati
     outfile.crea_immagini_output(labirinto, partenze, destinazioni, shortest_path)
     
-    return (labirinto, partenze, destinazioni, shortest_path, weight, dataframe)
+    return (labirinto, partenze, destinazioni, shortest_path, weight, tutti_i_cammini_semplici)
