@@ -177,7 +177,7 @@ class Labirinto:
                             # aggiungo la lunghezza del cammino alla lista len_cammini
                             len_cammini.append(len(cammino)-1)
                             # per ogni cammino trovato, calcolo il peso del path
-                            peso_archi_cammino = sum(grafo[u][v]['weight'] for u, v in zip(cammino[:-1], cammino[1:]))
+                            peso_archi_cammino = sum(self.grafo[u][v]['weight'] for u, v in zip(cammino[:-1], cammino[1:]))
                             # aggiunto i pesi trovati alla lista peso_archi
                             peso_archi.append(peso_archi_cammino)
         
