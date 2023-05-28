@@ -7,6 +7,8 @@ import os
 from input_file import Input_file
 from labirinto import Labirinto
 from output_file import Output_file
+import threading
+import time
 
 
 def calcolatore():
@@ -39,7 +41,21 @@ def calcolatore():
     # calcolo il cammino minimo e il peso ad esso associato
     shortest_path, weight= maze.cammino_minimo()
     # calcolo tutti i cammini possibili fra partenza e destinazione
-    dataframe =maze.trova_tutti_i_cammini()
+    #dataframe =maze.trova_tutti_i_cammini()
+    
+    thread = threading.Thread(target=maze.trova_tutti_i_cammini)
+        
+    thread.start()
+    time.sleep(10)
+
+    
+    if thread.is_alive():
+        thread.join(timeout=30)
+        print("Thread il thread non ha trovato soluzioni")
+    else:
+        thread.join()
+        print('il thread si è concluso con successo ed ha ottenuto una soluzione')
+    dataframe=maze.get_attributo()      
     
     #creo un'istanza della classe Output_file
     outfile= Output_file(nome_labirinto)
