@@ -150,10 +150,6 @@ class Labirinto:
 
         """
         
-        # creo l'oggetto grafo
-        grafo=Labirinto.crea_grafo(self)
-        
-        
         # Trasforma ogni sottolista in una tupla
         partenze=[tuple(sublist) for sublist in self.partenze]
         partenze=tuple(partenze)
