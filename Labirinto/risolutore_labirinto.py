@@ -65,5 +65,8 @@ def calcolatore():
     
     # restituisco i percorsi trovati
     outfile.crea_immagini_output(labirinto, partenze, destinazioni, shortest_path)
-    
+
+    tutti_i_cammini_minimi_dict={'tutti i cammini minimi':shortest_path,'costi':weight}
+    outfile.crea_file_json(tutti_i_cammini_minimi_dict,'tutti i cammini minimi')
+    outfile.crea_file_json(tutti_i_cammini_semplici,'tutti i cammini semplici')
     return (labirinto, partenze, destinazioni, shortest_path, weight, tutti_i_cammini_semplici)

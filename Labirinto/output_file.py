@@ -6,6 +6,7 @@ Created on Fri May 26 18:04:49 2023
 import os
 import numpy as np
 from PIL import Image
+import json
 
 class Output_file:
     """
@@ -108,6 +109,11 @@ class Output_file:
         immagine_rgb[partenze[0]][partenze[1]]=(0,255,0)
         immagine_rgb[destinazioni[0][0]][destinazioni[0][1]]=(255,0,0)
         return immagine_rgb
+    
+    def crea_file_json(self,dizionario,nome_file):
+        percorso_file = os.path.join(self.percorso_cartella, f"{nome_file} di {self.nome_labirinto}.json")
+        with open(percorso_file, 'w') as file:
+            json.dump(dizionario, file, indent=4)
     
     def salva_immagine_jpg(self, immagine_rgb,numero_immagine):
         """

@@ -185,9 +185,7 @@ class Labirinto:
         weight_tot=[x+y for x,y in zip(len_cammini, peso_archi)]
                             
         #creo un dizionario con i risultati di tutti i cammini con i costi associati per indice
-        dizionario={}
-        dizionario['tutti i cammini possibili']=cammini
-        dizionario['costo']=weight_tot
+        dizionario={'tutti i cammini possibili':cammini,'costo':weight_tot}
         self.cammini=dizionario
         return  self.cammini
     
