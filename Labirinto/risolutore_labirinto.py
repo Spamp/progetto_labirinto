@@ -46,17 +46,17 @@ def calcolatore():
     #avvio il thread
     thread.start()
     #blocco il codice principale per 10 secondi per dare il tempo al thread di fare tutte le sue operazioni
-    time.sleep(10)
+    time.sleep(5)
 
     #una volta svogliato il thread principale, controllo se il thread per cercare tutti i cammini è attivo
     if thread.is_alive():
         #se è ancora attivo provo a lasciralo lavorare ancora per 30 secondi
-        thread.join(timeout=30)
-        print("Thread il thread non ha trovato soluzioni")
+        thread.join(timeout=20)
+        print("il thread ha trovato solo i cammini minimi, ma non altre soluzioni")
     else:
         #se il thread si è concluso lo chiudo
         thread.join()
-        print('il thread si è concluso con successo ed ha ottenuto una soluzione')
+        print('il thread si è concluso con successo: ha trovato tutti i cammini possibili')
     #richiedo l'attributo creato da tutti i cammini con un metodo, per evitare conflitti tra thread
     tutti_i_cammini_semplici=maze.get_attributo()      
     

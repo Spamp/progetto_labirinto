@@ -111,6 +111,22 @@ class Output_file:
         return immagine_rgb
     
     def crea_file_json(self,dizionario,nome_file):
+        
+        """
+        Questo metodo crea i file json di output 
+        
+        Parameters
+        ----------
+        dizionario : dict
+            dizionario contenente i cammini
+        nome_file : string
+            stringa che identifica il nome del file
+
+        Returns
+        -------
+        None.
+
+        """
         percorso_file = os.path.join(self.percorso_cartella, f"{nome_file} di {self.nome_labirinto}.json")
         with open(percorso_file, 'w') as file:
             json.dump(dizionario, file, indent=4)
