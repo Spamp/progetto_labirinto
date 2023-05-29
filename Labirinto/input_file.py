@@ -40,7 +40,7 @@ class Input_file:
         self.filepath = filepath
         
         
-    def crea_labirinto_json(dict):
+    def crea_labirinto_json(self,dict):
         
         """
         
@@ -92,7 +92,7 @@ class Input_file:
             maze[posizione_orizzontale,posizione_verticale]=float(dict['costi'][i][2])
         return (maze, partenze, destinazioni)
     
-    def crea_labirinto_tiff(img_array):
+    def crea_labirinto_tiff(self,img_array):
         
         """
         Metodo che crea il labirinto a partire dal file con estensione .tiff
