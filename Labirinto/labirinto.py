@@ -97,7 +97,7 @@ class Labirinto:
 
         """
         #richiamiamo direttamento il metodo che crea il grafo
-        Labirinto.crea_grafo(self)
+        self.crea_grafo()
         # Trasformo ogni sottolista in una tupla
         partenze=[tuple(sublist) for sublist in self.partenze]
         partenze=tuple(partenze)

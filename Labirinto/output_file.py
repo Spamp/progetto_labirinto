@@ -53,8 +53,8 @@ class Output_file:
         Output_file.reset_output_file(self)
         #scorro le partenze per avere un matrice rgb per ogni partenza e percorso associato
         for i in range(len(partenze)):
-            immagine_rgb = Output_file.crea_immagine_rgb(self,labirinto, partenze[i],destinazioni, shortest_path[i])
-            Output_file.salva_immagine_jpg(self,immagine_rgb, i)
+            immagine_rgb = self.crea_immagine_rgb(labirinto, partenze[i],destinazioni, shortest_path[i])
+            self.salva_immagine_jpg(immagine_rgb, i)
     
     def reset_output_file(self):
         """
