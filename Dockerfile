@@ -28,7 +28,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 ##################################################################
 
 # create mount points of input data and results
-VOLUME /usr/src/app/Indata
+VOLUME /usr/src/app/indata
 VOLUME /usr/src/app/output
 
 # run the command
