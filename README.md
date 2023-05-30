@@ -43,9 +43,10 @@ I livelli di grigio possibili sono:
 
 ### ESEMPIO DI INPUT
 
-Il file di input può essere fornito come segue:
+Una volta avviato il codice, il file di input può essere fornito come segue:
 
-![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/cd90ac22-7f42-4b4e-8dce-e6c273c9ca38)
+![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/876a7c1e-575c-4ef3-a7ff-be50d84ee6e0)
+
 
 ## ELABORAZIONE
 
@@ -57,8 +58,21 @@ La matrice viene allora convertita in un grafo indiretto pesato, che viene esplo
 Il programma risolve il labirinto, calcolando per ogni punto di partenza il percorso minimo che permette di raggiungere il punto di arrivo con il minor costo possibile. Il costo viene calcolato come la somma dei pesi degli archi incontrati e la lunghezza del cammino stesso. Se non esiste alcun percorso possibile, il programma restituisce un cammino vuoto. 
 Inoltre, il programma calcola tutti i cammini possibili fra i punti di partenza e arrivo specificati, con i rispettivi costi associati.
 
-Il risultato del labirinto viene fornito con un'immagine che restituisce un percorso colorato fra partenza e destinazione. 
+Il risultato del labirinto per la ricerca dei cammini minimi viene fornito con un'immagine che restituisce un percorso colorato fra partenza e destinazione, e con un file json che riporta le caratteristiche del percorso trovato. 
 
 ### ESEMPIO DI OUTPUT:
+
+Eseguendo il programma per il file di input "30-20_marked.json" si ottengono i risultati seguenti:
+
+- 30-20_marked_0.jpg: 
+
+![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/768e37a4-edcd-42e8-b6b9-aea4d98b571d)
+
+- 30-20_marked_1.jpg:
+
+![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/0c2d5e70-ec24-4e44-89c3-4f9730551e91)
+
+
+
 
 
