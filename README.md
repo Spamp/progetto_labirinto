@@ -91,15 +91,11 @@ In seguito, eseguiamo il container "labirinto", specificando il percorso della c
 
 ![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/25af8bbb-afe1-4775-8bba-6eb4e844a832)
 
-I flag -a stdin e -a stdout connettono lo stdin e lo stdout del container con quello dell'host.
-
-Il flag -it attiva la modalità interattiva del container: in questo modo l'utente può interagire con la shell del container. 
-
-I flag -v C:\progetto_labirinto\Labirinto\indata e -v C:\progetto_labirinto\Labirinto\output rappresentano il path del computer per raggiungere le cartelle "indata" e "output" alle quali è collegato il container.
-
-I flag /usr/src/app/indata e /usr/src/app/output rappresentano il path delle cartelle virtuali del container. 
-
-Il flag --name labirinto, indica il container creato di nome "labirinto", mentre "clanto/maze:1" è l'immagine creata in precedenza, con il rispettivo nome utente. 
+- I flag -a stdin e -a stdout connettono lo stdin e lo stdout del container con quello dell'host.
+- Il flag -it attiva la modalità interattiva del container: in questo modo l'utente può interagire con la shell del container.
+- I flag -v C:\progetto_labirinto\Labirinto\indata e -v C:\progetto_labirinto\Labirinto\output rappresentano il path del computer per raggiungere le cartelle "indata" e "output" alle quali è collegato il container.
+- I flag /usr/src/app/indata e /usr/src/app/output rappresentano il path delle cartelle virtuali del container. 
+- Il flag --name labirinto, indica il container creato di nome "labirinto", mentre "clanto/maze:1" è l'immagine creata in precedenza, con il rispettivo nome utente. 
 
 
 
