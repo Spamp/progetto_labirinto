@@ -2,7 +2,7 @@
 
 Il programma implementato riceve in ingresso un file contenente le caratteristiche del labirinto, una lista di partenze e una lista di destinazioni, e fornisce in output il path del percorso di costo minimo fra i punti specificati, insieme al costo totale associato al percorso.
 
-## DESCRIZIONE DELL'INPUT
+## Descrizione dell'input
 
 Il programma riceve in ingresso dei file che contengono le caratteristiche del labirinto da analizzare. 
 Il file può essere fornito nei seguenti formati: .json, .tiff, .png, .jpg. 
@@ -41,26 +41,26 @@ I livelli di grigio possibili sono:
 - 124 che assegna un costo pari a 14
 - 240 che assegna un costo pari a 15
 
-### ESEMPIO DI INPUT
+### Esempio di input
 
 Una volta avviato il codice, il file di input può essere fornito come segue:
 
 ![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/32349e8b-3d91-40df-9bf1-6926602547a9)
 
 
-## ELABORAZIONE
+## Elaborazione
 
 Il programma acquisisce il layout di un labirinto costituito da una matrice di posizioni, una o più posizioni di partenza e una posizione di arrivo. Il labirinto viene trasformato in una matrice le cui celle contengono i costi riportati nel file, oppure valori NaN quando si ha una parete. 
 La matrice viene allora convertita in un grafo indiretto pesato, che viene esplorato a partire dai nodi di partenza specificati.
 
-## OUTPUT
+## Output
 
 Il programma risolve il labirinto, calcolando per ogni punto di partenza il percorso minimo che permette di raggiungere il punto di arrivo con il minor costo possibile. Il costo viene calcolato come la somma dei pesi degli archi incontrati e la lunghezza del cammino stesso. Se non esiste alcun percorso possibile, il programma restituisce un cammino vuoto. 
 Inoltre, il programma calcola tutti i cammini possibili fra i punti di partenza e arrivo specificati, con i rispettivi costi associati.
 
 Il risultato del labirinto per la ricerca dei cammini minimi viene fornito con un'immagine che restituisce un percorso colorato fra partenza e destinazione, e con un file json che riporta le caratteristiche del percorso trovato. 
 
-### ESEMPIO DI OUTPUT:
+### Esempio di output:
 
 Eseguendo il programma per il file di input "30-20_marked.json" si ottengono i risultati seguenti:
 
