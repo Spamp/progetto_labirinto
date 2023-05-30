@@ -89,7 +89,13 @@ In questo caso "clanto" è il nome utente del creatore dell'immagine, "maze" è 
 
 In seguito, eseguiamo il container "labirinto", specificando il percorso della cartella dei dati di input (indata) da cui prendere i dati in ingresso, e il percorso della cartella di output dove restituire i risultati (output). 
 
-![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/512b2632-b171-4219-bda7-35498cbfc9fb)
+![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/bf89e6c4-875f-4084-8273-d47eebd0c3ed)
+
+I flag -a stdin e -a stdout connettono lo stdin e lo stdout del container con quello dell'host.
+Il flag -it attiva la modalità interattiva del container: in questo modo l'utente può interagire con la shell del container. 
+I flag -v C:\progetto_labirinto\Labirinto\indata e -v C:\progetto_labirinto\Labirinto\output rappresentano il path del computer per raggiungere le cartelle "indata" e "output" alle quali è collegato il container.
+I flag /usr/src/app/indata e /usr/src/app/output rappresentano il path delle cartelle virtuali del container. 
+Il flag --name labirinto, indica il container creato di nome "labirinto", mentre "clanto/maze:1" è l'immagine creata in precedenza, con il rispettivo nome utente. 
 
 
 
