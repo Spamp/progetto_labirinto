@@ -79,5 +79,11 @@ Docker è un ambiente che consente l'esecuzione di container basato sull'impiego
 
 Un Dockerfile è un documento di testo che contiene i comandi necessari per creare un'immagine Docker. Nel nostro caso, i comandi specificati nel Dockerfile  si occupano di sviluppare l'ambiente virtuale python, scaricare i pacchetti specificati nel file requirements.txt e copiare tutti i file presenti nella directory Labirinto. 
 
-## Istruzioni per l'esecuzione dell'immagine Docker
+## Istruzioni per l'esecuzione del Docker
+
+Per creare l'immagine si utilizza il seguente comando:
+
+![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/67399ec8-72f2-47ff-ac14-c877e20dae7c)
+
+In questo caso "clanto" è il nome utente del creatore dell'immagine, "maze" è il nome dell'immagine, e 1 si riferisce alla versione. 
 
