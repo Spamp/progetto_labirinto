@@ -81,7 +81,7 @@ Un Dockerfile è un documento di testo che contiene i comandi necessari per crea
 
 ## Istruzioni per l'esecuzione del Docker
 
-Per creare l'immagine si utilizza il seguente comando:
+Per creare un'immagine docker bisogna assicurarsi di utilizzare il prompt dei comandi nella cartella contenente il Dockerfile, il file requirements.txt e il file del programma. A questo punto, si digita il seguente comando: 
 
 ![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/67399ec8-72f2-47ff-ac14-c877e20dae7c)
 
@@ -104,4 +104,6 @@ In seguito a questo comando, viene restituita la richiesta di input del programm
 Successivamente, si può continuare ad eseguire il programma all'interno dello stesso container labirinto digitando il comando sottostante, in seguito al quale viene restituita nuovamente la richiesta di input.  
 
 ![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/e35d689d-a167-480f-9645-fa2bb147d035)
+
+
 
