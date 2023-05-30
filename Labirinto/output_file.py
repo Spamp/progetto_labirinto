@@ -114,15 +114,38 @@ class Output_file:
         immagine_rgb[destinazioni[0][0]][destinazioni[0][1]]=(255,0,0)
         return immagine_rgb
     
-    def crea_file_json(self,dizionario,nome_file):
+    def crea_dizionari(self,cammini,pesi):
+        """
+        metodo per la creazione di un dizionario che descr
+
+        Parameters
+        ----------
+        cammini : TYPE
+            DESCRIPTION.
+        pesi : TYPE
+            DESCRIPTION.
+
+        Returns
+        -------
+        dict : TYPE
+            DESCRIPTION.
+
+        """
+        
+
+    
+    def crea_file_json(self,cammini,pesi,nome_file):
         
         """
-        Questo metodo crea i file json di output 
+        Questo metodo crea dei  dizionari dalle liste che contengono i cammini e i rispettivi pesi e li converte in
+        un file json salvato nella cartella output
         
         Parameters
         ----------
-        dizionario : dict
-            dizionario contenente i cammini
+        cammini : list
+            lista contenente i cammini
+        pesi: list
+            lista contente i pesi
         nome_file : string
             stringa che identifica il nome del file
 
@@ -131,7 +154,31 @@ class Output_file:
         None.
 
         """
+        #creo un dizionario che contiene tutti i dizionazari che descrivono i singoli percorsi
+        dizionario={}
+        for j in range(len(cammini)):
+            #controllo se il cammino è vuoto
+            if len(cammini[j])==0:
+                 #creo il dizionario che contiene le informazioni sui singoli percorsi
+                dict_singolo_percorso={}
+                #metto il dizionario del cammino vuotp nel dizionario contenente tutti i cammini
+                dizionario[f'percorso_{j}']=dict_singolo_percorso
+            else:
+                #creo il dizionario che contiene le informazioni sui singoli percorsi
+                dict_singolo_percorso={}
+                #prendo il primo nodo della lista del cammino
+                dict_singolo_percorso['partenza']=cammini[j][0]
+                #prendo l'ultimo nodo della lista del cammino
+                dict_singolo_percorso['destinazione']=cammini[j][-1]
+                #prendo il peso corrispondente nella lista dei pesi
+                dict_singolo_percorso['costo']=pesi[j]
+                #prendo l'intero cammino appena descritto dalla lista dei cammini
+                dict_singolo_percorso['cammino']=cammini[j]
+                #metto il dizionario descrittivo del cammino nel dizionario contenente tutti i cammini
+                dizionario[f'percorso_{j}']=dict_singolo_percorso
+        #creo il percorso del file json
         percorso_file = os.path.join(self.percorso_cartella, f"{nome_file} di {self.nome_labirinto}.json")
+        #scrivo il dizionario
         with open(percorso_file, 'w') as file:
             json.dump(dizionario, file, indent=4)
     

@@ -37,8 +37,8 @@ class Labirinto:
         self.destinazioni = destinazioni
         self.righe, self.colonne = labirinto.shape
         self.grafo=()
-        self.cammini={}
-        
+        self.cammini_semplici=[]
+        self.pesi_cammini_semplici=[]       
         
     def crea_grafo(self):
         
@@ -128,9 +128,10 @@ class Labirinto:
                         weight_tot.append(distance+(len(cammino_minimo)-1))
                     else:
                         #inserico un cammino vuoto all'interno della lista dei cammini se non esiste un percorso tra i nodi specificati
-                        cammini_minimi.append(())
+                        cammini_minimi.append([])
                         #inserisco un messaggio che non esiste un percorso e quindi neanche un peso nella lista di pesi, mettendolo nell'indice corrispondente al cammino vuoto 
                         weight_tot.append((f"Non esiste un percorso possibile fra {nodo_p} e {nodo_d}"))
+                        print(f"Non esiste un percorso possibile fra {nodo_p} e {nodo_d}")
                 else:
                     # se i nodi considerati non appartengono al grafo, restituisce un messaggio di errore
                     raise ValueError("Il nodo", nodo_p, "oppure il nodo", nodo_d, "non sono presenti nel grafo")
@@ -182,9 +183,11 @@ class Labirinto:
         weight_tot=[x+y for x,y in zip(len_cammini, peso_archi)]
                             
         #creo un dizionario con i risultati di tutti i cammini con i costi associati per indice
-        dizionario={'tutti i cammini possibili':cammini,'costo':weight_tot}
-        self.cammini=dizionario
-        return  self.cammini
+        #dizionario={'tutti i cammini possibili':cammini,'costo':weight_tot}
+        #self.cammini=dizionario
+        self.cammini_semplici=cammini
+        self.pesi_cammini_semplici=weight_tot
+        return  self.cammini_semplici, self.pesi_cammini_semplici
     
     def get_attributo(self):
         """
@@ -197,7 +200,9 @@ class Labirinto:
             dizionario
 
         """
-        return self.cammini
+        return self.cammini_semplici, self.pesi_cammini_semplici
+    
+
     
     
     

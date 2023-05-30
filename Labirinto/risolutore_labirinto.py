@@ -14,7 +14,7 @@ import time
 def calcolatore():
     
     """
-    Metodo che richiama i metodi implementati per risolvere il labirinto
+    Funzione che richiama i metodi implementati per risolvere il labirinto
 
     Returns
     -------
@@ -45,12 +45,12 @@ def calcolatore():
     thread = threading.Thread(target=maze.trova_tutti_i_cammini)
     #avvio il thread
     thread.start()
-    #blocco il codice principale per 10 secondi per dare il tempo al thread di fare tutte le sue operazioni
+    #blocco il codice principale per 5 secondi per dare il tempo al thread di fare tutte le sue operazioni
     time.sleep(5)
 
     #una volta svogliato il thread principale, controllo se il thread per cercare tutti i cammini è attivo
     if thread.is_alive():
-        #se è ancora attivo provo a lasciralo lavorare ancora per 30 secondi
+        #se è ancora attivo provo a lasciralo lavorare ancora per 20 secondi
         thread.join(timeout=20)
         print("il thread ha trovato solo i cammini minimi, ma non altre soluzioni")
     else:
@@ -58,7 +58,7 @@ def calcolatore():
         thread.join()
         print('il thread si è concluso con successo: ha trovato tutti i cammini possibili')
     #richiedo l'attributo creato da tutti i cammini con un metodo, per evitare conflitti tra thread
-    tutti_i_cammini_semplici=maze.get_attributo()      
+    cammini_semplici,pesi_cammini_semplici=maze.get_attributo()      
     
     #creo un'istanza della classe Output_file
     outfile= Output_file(nome_labirinto)
@@ -66,7 +66,6 @@ def calcolatore():
     # restituisco i percorsi trovati
     outfile.crea_immagini_output(labirinto, partenze, destinazioni, shortest_path)
 
-    tutti_i_cammini_minimi_dict={'tutti i cammini minimi':shortest_path,'costi':weight}
-    outfile.crea_file_json(tutti_i_cammini_minimi_dict,'tutti i cammini minimi')
-    outfile.crea_file_json(tutti_i_cammini_semplici,'tutti i cammini semplici')
-    return (labirinto, partenze, destinazioni, shortest_path, weight, tutti_i_cammini_semplici)
+    outfile.crea_file_json(shortest_path,weight,'tutti i cammini minimi')
+    outfile.crea_file_json(cammini_semplici,pesi_cammini_semplici,'tutti i cammini semplici')
+    return (labirinto, partenze, destinazioni, shortest_path, weight)
