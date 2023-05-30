@@ -50,7 +50,11 @@ class Output_file:
         None.
 
         """
-        Output_file.reset_output_file(self)
+        #controllo se la cartella di output esiste, altrimenti la crea.
+        if not os.path.exists(self.percorso_cartella):
+            os.makedirs(self.percorso_cartella)
+        #utilizzo il metodo per togliere tutti i file dalla cartella di output
+        self.reset_output_file()
         #scorro le partenze per avere un matrice rgb per ogni partenza e percorso associato
         for i in range(len(partenze)):
             immagine_rgb = self.crea_immagine_rgb(labirinto, partenze[i],destinazioni, shortest_path[i])
