@@ -4,6 +4,7 @@
 from risolutore_labirinto import calcolatore
 
 
+
 if __name__ == "__main__":
     
     """ 

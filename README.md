@@ -2,7 +2,7 @@
 
 Il programma implementato riceve in ingresso un file contenente le caratteristiche del labirinto, una lista di partenze e una lista di destinazioni, e fornisce in output il path del percorso di costo minimo fra i punti specificati, insieme al costo totale associato al percorso.
 
-## DESCRIZIONE DELL'INPUT
+## Descrizione dell'input
 
 Il programma riceve in ingresso dei file che contengono le caratteristiche del labirinto da analizzare. 
 Il file può essere fornito nei seguenti formati: .json, .tiff, .png, .jpg. 
@@ -41,26 +41,26 @@ I livelli di grigio possibili sono:
 - 124 che assegna un costo pari a 14
 - 240 che assegna un costo pari a 15
 
-### ESEMPIO DI INPUT
+### Esempio di input
 
 Una volta avviato il codice, il file di input può essere fornito come segue:
 
 ![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/32349e8b-3d91-40df-9bf1-6926602547a9)
 
 
-## ELABORAZIONE
+## Elaborazione
 
 Il programma acquisisce il layout di un labirinto costituito da una matrice di posizioni, una o più posizioni di partenza e una posizione di arrivo. Il labirinto viene trasformato in una matrice le cui celle contengono i costi riportati nel file, oppure valori NaN quando si ha una parete. 
 La matrice viene allora convertita in un grafo indiretto pesato, che viene esplorato a partire dai nodi di partenza specificati.
 
-## OUTPUT
+## Output
 
 Il programma risolve il labirinto, calcolando per ogni punto di partenza il percorso minimo che permette di raggiungere il punto di arrivo con il minor costo possibile. Il costo viene calcolato come la somma dei pesi degli archi incontrati e la lunghezza del cammino stesso. Se non esiste alcun percorso possibile, il programma restituisce un cammino vuoto. 
 Inoltre, il programma calcola tutti i cammini possibili fra i punti di partenza e arrivo specificati, con i rispettivi costi associati.
 
 Il risultato del labirinto per la ricerca dei cammini minimi viene fornito con un'immagine che restituisce un percorso colorato fra partenza e destinazione, e con un file json che riporta le caratteristiche del percorso trovato. 
 
-### ESEMPIO DI OUTPUT:
+### Esempio di output:
 
 Eseguendo il programma per il file di input "30-20_marked.json" si ottengono i risultati seguenti:
 
@@ -81,7 +81,7 @@ Un Dockerfile è un documento di testo che contiene i comandi necessari per crea
 
 ## Istruzioni per l'esecuzione del Docker
 
-Per creare l'immagine si utilizza il seguente comando:
+Per creare un'immagine Docker bisogna assicurarsi di utilizzare il prompt dei comandi nella cartella contenente il Dockerfile, il file requirements.txt e il file del programma. A questo punto, si digita il seguente comando: 
 
 ![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/67399ec8-72f2-47ff-ac14-c877e20dae7c)
 
@@ -104,4 +104,13 @@ In seguito a questo comando, viene restituita la richiesta di input del programm
 Successivamente, si può continuare ad eseguire il programma all'interno dello stesso container labirinto digitando il comando sottostante, in seguito al quale viene restituita nuovamente la richiesta di input.  
 
 ![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/e35d689d-a167-480f-9645-fa2bb147d035)
+
+Per visualizzare l'output, si utilizzano i seguenti comandi:
+
+![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/80c9f97f-5143-47f5-969e-5ad8013efb7c)
+
+![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/7fd968c4-74e9-4e90-829c-71b9d4225366)
+
+Il primo comando avvia il container "labirinto", mentre il secondo apre una shell interattiva all'interno del container. In questo modo, attraverso la shell, si può interagire direttamente con l'ambiente all'interno del container Docker, e quindi accedere ai file. 
+
 

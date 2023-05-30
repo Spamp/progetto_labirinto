@@ -96,23 +96,19 @@ class Labirinto:
             Restituisce una lista di liste contenenti il peso totale del cammino
 
         """
-        #richiamiamo direttamento il metodo che crea il grafo
+        # richiamo direttamento il metodo che crea il grafo
         self.crea_grafo()
-        # Trasformo ogni sottolista in una tupla
+        
+        # Trasformo le liste di partenza e destinazione in tuple, poichè immutabili, quindi più sicure e prestanti
         partenze=tuple([tuple(sublist) for sublist in self.partenze])
-        #partenze=tuple(partenze)
         destinazioni=tuple([tuple(sublist) for sublist in self.destinazioni])
                
-        # Converto le tuple in insiemi di nodi
-        partenze_set = set(partenze)
-        destinazioni_set = set(destinazioni)
-        
         cammini_minimi = [] 
         weight_tot=[]
         
         # Scorro tutti i nodi di partenza e destinazione
-        for nodo_p in partenze_set:
-            for nodo_d in destinazioni_set:
+        for nodo_p in partenze:
+            for nodo_d in destinazioni:
                 
                 # verifico che i nodi di partenza e destinazione siano nel grafo
                 if self.grafo.has_node(nodo_p) and self.grafo.has_node(nodo_d):
@@ -150,7 +146,7 @@ class Labirinto:
 
         """
         
-        # Trasforma ogni sottolista in una tupla
+        # Trasformo le liste di partenza e destinazione in tuple
         partenze=tuple([tuple(sublist) for sublist in self.partenze])
         destinazioni=tuple([tuple(sublist) for sublist in self.destinazioni])
         
@@ -160,16 +156,17 @@ class Labirinto:
         peso_archi=[]
         weight_tot=[]
         
-        for partenza in partenze:
-            for destinazione in destinazioni:
+        # scorro tutti i nodi di partenza e destinazione
+        for nodo_p in partenze:
+            for nodo_d in destinazioni:
                 
                 # verifico che i nodi di partenza e destinazione siano nel grafo
-                if self.grafo.has_node(partenza) and self.grafo.has_node(destinazione):
+                if self.grafo.has_node(nodo_p) and self.grafo.has_node(nodo_d):
                     
                     # verifico che esista un path possibile fra nodo di partenza e destinazione
-                    if nx.has_path(self.grafo, partenza, destinazione):
+                    if nx.has_path(self.grafo, nodo_p, nodo_d):
                         # calcolo tutti i cammini possibili fra il nodo di partenza e quello di destinazione (cutoff=None, è la profondità massima di esplorazione)
-                        for cammino in list(nx.all_simple_paths(self.grafo, source=partenza, target=destinazione, cutoff=None)):
+                        for cammino in list(nx.all_simple_paths(self.grafo, source=nodo_p, target=nodo_d, cutoff=None)):
                             # aggiungo il cammino trovato alla lista dei cammini
                             cammini.append(cammino)
                             # aggiungo la lunghezza del cammino alla lista len_cammini
