@@ -97,5 +97,11 @@ In seguito, eseguiamo il container "labirinto", specificando il percorso della c
 - I flag /usr/src/app/indata e /usr/src/app/output rappresentano il path delle cartelle virtuali del container. 
 - Il flag --name labirinto, indica il container creato di nome "labirinto", mentre "clanto/maze:1" è l'immagine creata in precedenza, con il rispettivo nome utente. 
 
+In seguito a questo comando, viene restituita la richiesta di input del programma, nel quale il file di input viene inserito come segue:
 
+![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/2fde27d2-1a3f-4cf7-8cea-31af289e086d)
+
+Successivamente, si può continuare ad eseguire il programma all'interno dello stesso container labirinto digitando il comando sottostante, in seguito al quale viene restituita nuovamente la richiesta di input.  
+
+![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/e35d689d-a167-480f-9645-fa2bb147d035)
 
