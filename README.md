@@ -45,7 +45,7 @@ I livelli di grigio possibili sono:
 
 Una volta avviato il codice, il file di input può essere fornito come segue:
 
-![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/876a7c1e-575c-4ef3-a7ff-be50d84ee6e0)
+![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/32349e8b-3d91-40df-9bf1-6926602547a9)
 
 
 ## ELABORAZIONE
@@ -70,7 +70,8 @@ Eseguendo il programma per il file di input "30-20_marked.json" si ottengono i r
 
 - 30-20_marked_1.jpg:
 
-![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/0c2d5e70-ec24-4e44-89c3-4f9730551e91)
+![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/3c306f36-3e75-41f0-a98e-ed105478f615)
+
 
 
 
