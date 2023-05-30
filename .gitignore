@@ -1,8 +1,9 @@
-
+indata/*
 __pycache__
 .DS_Store
 .idea
 outdata
 indata/labirinto2_def.tiff
 indata/labirinto3_def.tiff
+output
 
