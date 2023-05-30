@@ -108,6 +108,7 @@ Successivamente, si può continuare ad eseguire il programma all'interno dello s
 Per visualizzare l'output, si utilizzano i seguenti comandi:
 
 ![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/80c9f97f-5143-47f5-969e-5ad8013efb7c)
+
 ![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/7fd968c4-74e9-4e90-829c-71b9d4225366)
 
 Il primo comando avvia il container "labirinto", mentre il secondo apre una shell interattiva all'interno del container. In questo modo, attraverso la shell, si può interagire direttamente con l'ambiente all'interno del container Docker, e quindi accedere ai file. 
