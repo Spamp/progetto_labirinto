@@ -99,7 +99,7 @@ In seguito, eseguiamo il container "labirinto", specificando il percorso della c
 
 In seguito a questo comando, viene restituita la richiesta di input del programma, nel quale il file di input viene inserito come segue:
 
-![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/2fde27d2-1a3f-4cf7-8cea-31af289e086d)
+![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/a93d4079-f197-4e5d-861a-74fa402789ba)
 
 Successivamente, si può continuare ad eseguire il programma all'interno dello stesso container labirinto digitando il comando sottostante, in seguito al quale viene restituita nuovamente la richiesta di input.  
 
