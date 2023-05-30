@@ -43,9 +43,10 @@ I livelli di grigio possibili sono:
 
 ### ESEMPIO DI INPUT
 
-Il file di input può essere fornito come segue:
+Una volta avviato il codice, il file di input può essere fornito come segue:
 
-![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/cd90ac22-7f42-4b4e-8dce-e6c273c9ca38)
+![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/32349e8b-3d91-40df-9bf1-6926602547a9)
+
 
 ## ELABORAZIONE
 
@@ -57,8 +58,32 @@ La matrice viene allora convertita in un grafo indiretto pesato, che viene esplo
 Il programma risolve il labirinto, calcolando per ogni punto di partenza il percorso minimo che permette di raggiungere il punto di arrivo con il minor costo possibile. Il costo viene calcolato come la somma dei pesi degli archi incontrati e la lunghezza del cammino stesso. Se non esiste alcun percorso possibile, il programma restituisce un cammino vuoto. 
 Inoltre, il programma calcola tutti i cammini possibili fra i punti di partenza e arrivo specificati, con i rispettivi costi associati.
 
-Il risultato del labirinto viene fornito con un'immagine che restituisce un percorso colorato fra partenza e destinazione. 
+Il risultato del labirinto per la ricerca dei cammini minimi viene fornito con un'immagine che restituisce un percorso colorato fra partenza e destinazione, e con un file json che riporta le caratteristiche del percorso trovato. 
 
 ### ESEMPIO DI OUTPUT:
 
+Eseguendo il programma per il file di input "30-20_marked.json" si ottengono i risultati seguenti:
+
+- 30-20_marked_0.jpg: 
+
+![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/768e37a4-edcd-42e8-b6b9-aea4d98b571d)
+
+- 30-20_marked_1.jpg:
+
+![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/3c306f36-3e75-41f0-a98e-ed105478f615)
+
+
+# Dockerfile
+
+Docker è un ambiente che consente l'esecuzione di container basato sull'impiego di immagini. Un'immagine è un file non modificabile che contiene tutte le informazioni per l'esecuzione di un'applicazione (quindi codice sorgente, librerie, dipendenze, e così via). Il container è un'immagine in esecuzione, quindi si modifica ed evolve nel tempo. 
+
+Un Dockerfile è un documento di testo che contiene i comandi necessari per creare un'immagine Docker. Nel nostro caso, i comandi specificati nel Dockerfile  si occupano di sviluppare l'ambiente virtuale python, scaricare i pacchetti specificati nel file requirements.txt e copiare tutti i file presenti nella directory Labirinto. 
+
+## Istruzioni per l'esecuzione del Docker
+
+Per creare l'immagine si utilizza il seguente comando:
+
+![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/67399ec8-72f2-47ff-ac14-c877e20dae7c)
+
+In questo caso "clanto" è il nome utente del creatore dell'immagine, "maze" è il nome dell'immagine, e 1 si riferisce alla versione. 
 
