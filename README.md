@@ -73,11 +73,11 @@ Eseguendo il programma per il file di input "30-20_marked.json" si ottengono i r
 ![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/3c306f36-3e75-41f0-a98e-ed105478f615)
 
 
-## Dockerfile
+# Dockerfile
 
 Docker è un ambiente che consente l'esecuzione di container basato sull'impiego di immagini. Un'immagine è un file non modificabile che contiene tutte le informazioni per l'esecuzione di un'applicazione (quindi codice sorgente, librerie, dipendenze, e così via). Il container è un'immagine in esecuzione, quindi si modifica ed evolve nel tempo. 
 
 Un Dockerfile è un documento di testo che contiene i comandi necessari per creare un'immagine Docker. Nel nostro caso, i comandi specificati nel Dockerfile  si occupano di sviluppare l'ambiente virtuale python, scaricare i pacchetti specificati nel file requirements.txt e copiare tutti i file presenti nella directory Labirinto. 
 
-# Istruzioni per l'esecuzione dell'immagine Docker
+## Istruzioni per l'esecuzione dell'immagine Docker
 
