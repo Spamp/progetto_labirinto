@@ -96,14 +96,15 @@ class Labirinto:
             Restituisce una lista di liste contenenti il peso totale del cammino
 
         """
-        #richiamiamo direttamento il metodo che crea il grafo
+        # richiamo direttamento il metodo che crea il grafo
         self.crea_grafo()
-        # Trasformo ogni sottolista in una tupla
+        
+        # Trasformo le liste di partenza e destinazione in tuple, poichè immutabili, quindi più sicure e prestanti
         partenze=tuple([tuple(sublist) for sublist in self.partenze])
-        #partenze=tuple(partenze)
         destinazioni=tuple([tuple(sublist) for sublist in self.destinazioni])
                
-        # Converto le tuple in insiemi di nodi
+        # Converto le tuple contenenti i nodi di partenza e destinazione in un insieme set, per facilitare la verifica
+        # della presenza dei nodi considerati nel grafo di partenza, sfruttando la proprietà di unicità degli elementi
         partenze_set = set(partenze)
         destinazioni_set = set(destinazioni)
         

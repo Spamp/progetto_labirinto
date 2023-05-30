@@ -36,6 +36,7 @@ def calcolatore():
     filepath = './indata/'+nomefile
     input_file=Input_file(filepath)
     (labirinto, partenze, destinazioni)=input_file.leggi_file()
+    
     # creo un'istanza della classe Labirinto
     maze = Labirinto(labirinto, partenze, destinazioni)
     # calcolo il cammino minimo e il peso ad esso associato

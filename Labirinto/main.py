@@ -4,6 +4,7 @@
 from risolutore_labirinto import calcolatore
 
 
+
 if __name__ == "__main__":
     
     """ 
@@ -12,3 +13,4 @@ if __name__ == "__main__":
     """
     
     (labirinto, partenze, destinazioni, shortest_path, weight, dizionario) = calcolatore()
+    
