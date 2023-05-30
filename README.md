@@ -87,3 +87,9 @@ Per creare l'immagine si utilizza il seguente comando:
 
 In questo caso "clanto" è il nome utente del creatore dell'immagine, "maze" è il nome dell'immagine, e 1 si riferisce alla versione. 
 
+In seguito, eseguiamo il container "labirinto", specificando il percorso della cartella dei dati di input (indata) da cui prendere i dati in ingresso, e il percorso della cartella di output dove restituire i risultati (output). 
+
+![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/512b2632-b171-4219-bda7-35498cbfc9fb)
+
+
+
