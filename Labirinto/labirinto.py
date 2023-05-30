@@ -99,11 +99,10 @@ class Labirinto:
         #richiamiamo direttamento il metodo che crea il grafo
         self.crea_grafo()
         # Trasformo ogni sottolista in una tupla
-        partenze=[tuple(sublist) for sublist in self.partenze]
-        partenze=tuple(partenze)
-        destinazioni=[tuple(sublist) for sublist in self.destinazioni]
-        destinazioni=tuple(destinazioni)
-        
+        partenze=tuple([tuple(sublist) for sublist in self.partenze])
+        #partenze=tuple(partenze)
+        destinazioni=tuple([tuple(sublist) for sublist in self.destinazioni])
+               
         # Converto le tuple in insiemi di nodi
         partenze_set = set(partenze)
         destinazioni_set = set(destinazioni)
@@ -151,10 +150,8 @@ class Labirinto:
         """
         
         # Trasforma ogni sottolista in una tupla
-        partenze=[tuple(sublist) for sublist in self.partenze]
-        partenze=tuple(partenze)
-        destinazioni=[tuple(sublist) for sublist in self.destinazioni]
-        destinazioni=tuple(destinazioni)
+        partenze=tuple([tuple(sublist) for sublist in self.partenze])
+        destinazioni=tuple([tuple(sublist) for sublist in self.destinazioni])
         
         #Calcolo tutti i possibili cammini fra partenza/e e destinazione/i
         cammini = []
