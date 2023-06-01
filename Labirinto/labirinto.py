@@ -36,7 +36,8 @@ class Labirinto:
         self.partenze = partenze
         self.destinazioni = destinazioni
         self.righe, self.colonne = labirinto.shape
-        self.grafo=()
+        # richiamo direttamento il metodo che crea il grafo
+        self.grafo=self.crea_grafo()
         self.cammini_semplici=[]
         self.pesi_cammini_semplici=[]       
         
@@ -96,8 +97,7 @@ class Labirinto:
             Restituisce una lista di liste contenenti il peso totale del cammino
 
         """
-        # richiamo direttamento il metodo che crea il grafo
-        self.crea_grafo()
+        
         
         # Trasformo le liste di partenza e destinazione in tuple, poichè immutabili, quindi più sicure e prestanti
         partenze=tuple([tuple(sublist) for sublist in self.partenze])
