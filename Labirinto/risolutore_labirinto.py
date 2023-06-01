@@ -41,24 +41,33 @@ def calcolatore():
     maze = Labirinto(labirinto, partenze, destinazioni)
     # calcolo il cammino minimo e il peso ad esso associato
     shortest_path, weight= maze.cammino_minimo()
-    # calcolo tutti i cammini possibili fra partenza e destinazione, utilizzando un thread parallelo così
-    #da evitare che il codice si blocchi    
+    
+    # Calcolo tutti i cammini possibili fra partenza e destinazione. Essendo un calcolo molto oneroso,
+    # avviamo un thread per assegnare al metodo di ricerca di tutti i cammini semplici un tempo massimo di esecuzione.
+    # Assegnamo un tempo massimo di 25 secondi totali, in seguito ai quali vengono restituiti tutti i cammini trovati.
+    # Se il tempo di esecuzione del metodo supera il tempo massimo specificato, possiamo concludere
+    # che il metodo ha trovato un numero troppo elevato di percorsi, che può essere potenzialmente infinito. 
+    
+    # richiamo un metodo che crea un thread che scorre la funzione trova_tutti_i_cammini   
     thread = threading.Thread(target=maze.trova_tutti_i_cammini)
-    #avvio il thread
+    #avvio il thread appena creato
     thread.start()
-    #blocco il codice principale per 5 secondi per dare il tempo al thread di fare tutte le sue operazioni
+    #blocco il codice principale per 5 secondi per dare il tempo al thread di calcolare tutti i cammini
     time.sleep(5)
-
-    #una volta svogliato il thread principale, controllo se il thread per cercare tutti i cammini è attivo
+    # quando termina il blocco, controllo se il thread per cercare tutti i cammini è attivo (non è ancora termato)
     if thread.is_alive():
-        #se è ancora attivo provo a lasciralo lavorare ancora per 20 secondi
+        #se è ancora attivo, gli lascio altri 20 secondi per trovare tutti i cammini
         thread.join(timeout=20)
+        # se dopo 20 secondi (25 totali) non si è ancora concluso, potrei avere cammini infiniti
         print("il thread ha trovato solo i cammini minimi, ma non altre soluzioni")
     else:
-        #se il thread si è concluso lo chiudo
+        #se il thread non è più attivo (quindi si è concluso trovando tutti i cammini), si chiude
         thread.join()
+        # se il thread si è chiuso, restituisce un messaggio 
         print('il thread si è concluso con successo: ha trovato tutti i cammini possibili')
-    #richiedo l'attributo creato da tutti i cammini con un metodo, per evitare conflitti tra thread
+        
+    # richiamo il metodo che mi restituisce gli attributi della classe labirinto "cammini_semplici" e 
+    # "pesi_cammini_semplici". 
     cammini_semplici,pesi_cammini_semplici=maze.get_attributo()      
     
     #creo un'istanza della classe Output_file

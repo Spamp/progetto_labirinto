@@ -151,10 +151,8 @@ class Labirinto:
         destinazioni=tuple([tuple(sublist) for sublist in self.destinazioni])
         
         #Calcolo tutti i possibili cammini fra partenza/e e destinazione/i
-        cammini = []
         len_cammini=[]
         peso_archi=[]
-        weight_tot=[]
         
         # scorro tutti i nodi di partenza e destinazione
         for nodo_p in partenze:
@@ -168,7 +166,7 @@ class Labirinto:
                         # calcolo tutti i cammini possibili fra il nodo di partenza e quello di destinazione (cutoff=None, è la profondità massima di esplorazione)
                         for cammino in list(nx.all_simple_paths(self.grafo, source=nodo_p, target=nodo_d, cutoff=None)):
                             # aggiungo il cammino trovato alla lista dei cammini
-                            cammini.append(cammino)
+                            self.cammini_semplici.append(cammino)
                             # aggiungo la lunghezza del cammino alla lista len_cammini
                             len_cammini.append(len(cammino)-1)
                             # per ogni cammino trovato, calcolo il peso del path
@@ -177,25 +175,27 @@ class Labirinto:
                             peso_archi.append(peso_archi_cammino)
         
         # calcolo il costo totale del cammino, dato dalla somma dei pesi e della lunghezza del cammino
-        weight_tot=[x+y for x,y in zip(len_cammini, peso_archi)]
+        self.pesi_cammini_semplici=[x+y for x,y in zip(len_cammini, peso_archi)]
                             
-        #creo un dizionario con i risultati di tutti i cammini con i costi associati per indice
-        #dizionario={'tutti i cammini possibili':cammini,'costo':weight_tot}
-        #self.cammini=dizionario
-        self.cammini_semplici=cammini
-        self.pesi_cammini_semplici=weight_tot
-        return  self.cammini_semplici, self.pesi_cammini_semplici
     
     def get_attributo(self):
+       
         """
-        metodo che ritorna l'attributo della classe cammini, creato in precendenza dal metodo
-        trova_tutti_i_cammini
+        metodo che ritorna solo gli attributi cammini_semplici e pesi_cammini_semplici 
+        dalla classe labirinto. 
+        Questo metodo è necessario perchè, quando richiamiamo il metodo per risolvere tutti i cammini,
+        abbiamo bisogno di avviare un thread per dare all'algoritmo un tempo massimo per svolgere questo calcolo. 
+        Tuttavia il thread non permette l'instanziamento delle variabili di output; perciò, questo metodo serve
+        a richiamare gli attributi della classe labirinto, per poterli poi assegnare a variabili richiamate
+        nel codice principale.
+        
 
         Returns
         -------
-        TYPE
-            dizionario
-
+        cammini_semplici : list
+                lista che contiene le liste di tutti i percorsi trovati fra partenza e destinazione
+        pesi_cammini_semplici : list
+                lista che contiene i pesi di tutti i percorsi trovati
         """
         return self.cammini_semplici, self.pesi_cammini_semplici
     
