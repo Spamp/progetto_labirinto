@@ -195,9 +195,9 @@ class Input_file:
                     #richiamo diretto il metodo per creare il labirinto da file json
                     (labirinto, partenze, destinazioni)=self.crea_labirinto_json(dictionary)
                     return (labirinto, partenze, destinazioni)
-                elif estensioneFile == '.tiff':
+                elif estensioneFile == '.tiff' or estensioneFile=='.jpg' or estensioneFile=='.png':
                     img_array =self.leggi_file_tiff()
-                    #richiamo diretto il metodo per creare il labirinto da file tiff
+                    #richiamo diretto il metodo per creare il labirinto da file tiff,jpg o png
                     (labirinto, partenze, destinazioni)=self.crea_labirinto_tiff(img_array)
                     return (labirinto, partenze, destinazioni)
             #se il file non si trova all'interno della cartella indata, richiedo di nuovo l'input 
