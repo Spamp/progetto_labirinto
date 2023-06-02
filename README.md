@@ -68,10 +68,17 @@ Eseguendo il programma per il file di input "30-20_marked.json" si ottengono i r
 
 ![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/768e37a4-edcd-42e8-b6b9-aea4d98b571d)
 
+Il file .json associato alla soluzione è:
+
+![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/0103cfbb-1a72-474e-a3be-966e4ba9403c)
+
 - 30-20_marked_1.jpg:
 
 ![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/3c306f36-3e75-41f0-a98e-ed105478f615)
 
+Il file .json associato alla soluzione è: 
+
+![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/6ec64848-e67a-4090-87a4-c22f1a1e5005)
 
 # Dockerfile
 
