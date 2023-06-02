@@ -65,7 +65,9 @@ Il risultato per il calcolo di tutti i cammini possibili viene invece restituito
 
 ### Esempio di output:
 
-Eseguendo il programma per il file di input "30-20_marked.json" si ottengono i risultati seguenti:
+Eseguendo il programma per il file di input "30-20_marked.json" si ottengono i risultati riportati in seguito.
+
+Nel calcolo dei cammini minimi si ottengono le soluzioni:
 
 - 30-20_marked_0.jpg: 
 
@@ -82,6 +84,11 @@ Il file .json associato alla soluzione è:
 Il file .json associato alla soluzione è: 
 
 ![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/6ec64848-e67a-4090-87a4-c22f1a1e5005)
+
+Nel calcolo di tutti i cammini possibili, viene restituito un file json come segue:
+
+![image](https://github.com/Spamp/progetto_labirinto/assets/118067217/c14bec30-09c3-4d3d-8c6e-899d6cdb63c1)
+
 
 # Dockerfile
 
