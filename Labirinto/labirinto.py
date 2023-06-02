@@ -44,7 +44,12 @@ class Labirinto:
     def crea_grafo(self):
         
         """
-        Metodo che crea un grafo indiretto a partire dall'array labirinto
+        Metodo che crea un grafo indiretto pesato a partire dall'array labirinto.
+        
+        Questo metodo scorre le celle del labirinto, e congiunge tutte le caselle adiacenti
+        con un arco di peso pari al valore della cella corrente. In questo modo, ogni cella
+        individuerà un nodo del grafo, e il costo per andare da un nodo all'altro sarà dato 
+        dal peso dell'arco congiungente i due nodi.
 
         Returns
         -------
@@ -116,10 +121,13 @@ class Labirinto:
                     # verifico che esista un path possibile fra nodo di partenza e destinazione 
                     if nx.has_path(self.grafo,nodo_p,nodo_d):
                         
-                        # restituisce il path minimo pesato fra i nodi di partenza e destinazione
+                        # restituisco il path minimo pesato fra i nodi di partenza e destinazione. La variabile "weight" tiene conto
+                        # del peso associato agli archi incontrati lungo il percorso calcolato
                         distance, cammino_minimo = nx.single_source_dijkstra(self.grafo, source=nodo_p, target=nodo_d, weight ='weight')
+                        
                         # aggiungo il cammino minimo trovato alla lista dei cammini minimi
                         cammini_minimi.append(cammino_minimo)
+                        
                         # aggiungo alla lista dei pesi il peso totale, dato dalla somma della lunghezza del cammino e dei pesi incontrati
                         weight_tot.append(distance+(len(cammino_minimo)-1))
                     else:
