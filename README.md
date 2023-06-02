@@ -56,9 +56,12 @@ La matrice viene allora convertita in un grafo indiretto pesato, che viene esplo
 ## Output
 
 Il programma risolve il labirinto, calcolando per ogni punto di partenza il percorso minimo che permette di raggiungere il punto di arrivo con il minor costo possibile. Il costo viene calcolato come la somma dei pesi degli archi incontrati e la lunghezza del cammino stesso. Se non esiste alcun percorso possibile, il programma restituisce un cammino vuoto. 
+
 Inoltre, il programma calcola tutti i cammini possibili fra i punti di partenza e arrivo specificati, con i rispettivi costi associati.
+Per effettuare questo calcolo viene avviato un thread, che stabisce un tempo massimo in cui il metodo di ricerca dei cammini può essere attivo. Questo permette al programma di non bloccarsi o andare in errore nel caso in cui il labirinto avesse dimensioni troppo elevate o vi fosse un numero di cammini infiniti da calcolare. 
 
 Il risultato del labirinto per la ricerca dei cammini minimi viene fornito con un'immagine che restituisce un percorso colorato fra partenza e destinazione, e con un file json che riporta le caratteristiche del percorso trovato. 
+Il risultato per il calcolo di tutti i cammini possibili viene invece restituito tramite un file json.
 
 ### Esempio di output:
 
