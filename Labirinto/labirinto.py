@@ -91,7 +91,7 @@ class Labirinto:
         
         """
         Metodo che trova il cammino minimo fra le partenze e le destinazioni, e restituisce il path
-        del cammino e il peso ad esso associato
+        del cammino e il peso ad esso associato. 
 
         Returns
         -------
@@ -171,18 +171,22 @@ class Labirinto:
                     
                     # verifico che esista un path possibile fra nodo di partenza e destinazione
                     if nx.has_path(self.grafo, nodo_p, nodo_d):
+                        
                         # calcolo tutti i cammini possibili fra il nodo di partenza e quello di destinazione (cutoff=None, è la profondità massima di esplorazione)
                         for cammino in list(nx.all_simple_paths(self.grafo, source=nodo_p, target=nodo_d, cutoff=None)):
+                            
                             # aggiungo il cammino trovato alla lista dei cammini
                             self.cammini_semplici.append(cammino)
+                            
                             # aggiungo la lunghezza del cammino alla lista len_cammini
                             len_cammini.append(len(cammino)-1)
+                            
                             # per ogni cammino trovato, calcolo il peso del path
                             peso_archi_cammino = sum(self.grafo[u][v]['weight'] for u, v in zip(cammino[:-1], cammino[1:]))
                             # aggiunto i pesi trovati alla lista peso_archi
                             peso_archi.append(peso_archi_cammino)
         
-        # calcolo il costo totale del cammino, dato dalla somma dei pesi e della lunghezza del cammino
+        # calcolo il costo totale del cammino, dato dalla somma dei pesi degli archi e della lunghezza del cammino
         self.pesi_cammini_semplici=[x+y for x,y in zip(len_cammini, peso_archi)]
                             
     
