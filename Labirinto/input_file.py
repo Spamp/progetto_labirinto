@@ -187,25 +187,30 @@ class Input_file:
             nome=percorsolist[2]
             nomefile=nome+estensioneFile
             lista_file = os.listdir('./indata/')
-            #controlla che il nome del file sia all'interno della cartella
-            if nomefile in lista_file:
-                if estensioneFile == '.json':
-                    dictionary=self.leggi_file_json()
-                    
-                    #richiamo diretto il metodo per creare il labirinto da file json
-                    (labirinto, partenze, destinazioni)=self.crea_labirinto_json(dictionary)
-                    return (labirinto, partenze, destinazioni)
-                elif estensioneFile == '.tiff' or estensioneFile=='.jpg' or estensioneFile=='.png':
-                    img_array =self.leggi_file_tiff()
-                    #richiamo diretto il metodo per creare il labirinto da file tiff,jpg o png
-                    (labirinto, partenze, destinazioni)=self.crea_labirinto_tiff(img_array)
-                    return (labirinto, partenze, destinazioni)
-            #se il file non si trova all'interno della cartella indata, richiedo di nuovo l'input 
+            #controllo che la cartella di input non sia vuota
+            if len(lista_file)==0:
+                #se la cartella è vuota blocca il codice e restituisce l'errore
+                raise Exception("La cartella indata non ha file al suo interno.")
             else:
-                lista_file = os.listdir('./indata/')
-                print(lista_file)
-                self.filepath='./indata/'+str(input('il file cercato non è presente nella cartella. Prova con un altro nome: '))        
-        
+                #controlla che il nome del file sia all'interno della cartella
+                if nomefile in lista_file:
+                    if estensioneFile == '.json':
+                        dictionary=self.leggi_file_json()
+                        
+                        #richiamo diretto il metodo per creare il labirinto da file json
+                        (labirinto, partenze, destinazioni)=self.crea_labirinto_json(dictionary)
+                        return (labirinto, partenze, destinazioni)
+                    elif estensioneFile == '.tiff' or estensioneFile=='.jpg' or estensioneFile=='.png':
+                        img_array =self.leggi_file_tiff()
+                        #richiamo diretto il metodo per creare il labirinto da file tiff,jpg o png
+                        (labirinto, partenze, destinazioni)=self.crea_labirinto_tiff(img_array)
+                        return (labirinto, partenze, destinazioni)
+                #se il file non si trova all'interno della cartella indata, richiedo di nuovo l'input 
+                else:
+                    lista_file = os.listdir('./indata/')
+                    print(lista_file)
+                    self.filepath='./indata/'+str(input('il file cercato non è presente nella cartella. Prova con un altro nome: '))        
+            
     def leggi_file_json(self):
        
         """
