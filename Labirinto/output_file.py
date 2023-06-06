@@ -114,25 +114,6 @@ class Output_file:
         immagine_rgb[destinazioni[0][0]][destinazioni[0][1]]=(255,0,0)
         return immagine_rgb
     
-    def crea_dizionari(self,cammini,pesi):
-        """
-        metodo per la creazione di un dizionario che descr
-
-        Parameters
-        ----------
-        cammini : TYPE
-            DESCRIPTION.
-        pesi : TYPE
-            DESCRIPTION.
-
-        Returns
-        -------
-        dict : TYPE
-            DESCRIPTION.
-
-        """
-        
-
     
     def crea_file_json(self,cammini,pesi,nome_file):
         
