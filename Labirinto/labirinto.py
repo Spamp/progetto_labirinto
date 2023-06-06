@@ -190,29 +190,6 @@ class Labirinto:
         self.pesi_cammini_semplici=[x+y for x,y in zip(len_cammini, peso_archi)]
                             
     
-    def get_attributo(self):
-       
-        """
-        metodo che ritorna solo gli attributi cammini_semplici e pesi_cammini_semplici 
-        dalla classe labirinto. 
-        Questo metodo è necessario perchè, quando richiamiamo il metodo per risolvere tutti i cammini,
-        abbiamo bisogno di avviare un thread per dare all'algoritmo un tempo massimo per svolgere questo calcolo. 
-        Tuttavia il thread non permette l'instanziamento delle variabili di output; perciò, questo metodo serve
-        a richiamare gli attributi della classe labirinto, per poterli poi assegnare a variabili richiamate
-        nel codice principale.
-        
-
-        Returns
-        -------
-        cammini_semplici : list
-                lista che contiene le liste di tutti i percorsi trovati fra partenza e destinazione
-        pesi_cammini_semplici : list
-                lista che contiene i pesi di tutti i percorsi trovati
-        """
-        return self.cammini_semplici, self.pesi_cammini_semplici
-    
-
-    
     
     
 

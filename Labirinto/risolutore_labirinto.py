@@ -83,7 +83,9 @@ def calcolatore():
         print('il thread si è concluso con successo: ha trovato tutti i cammini possibili')
         
     # richiamo il metodo che mi restituisce gli attributi della classe labirinto "cammini_semplici" e # "pesi_cammini_semplici". 
-    cammini_semplici,pesi_cammini_semplici=maze.get_attributo()      
+    cammini_semplici=maze.cammini_semplici
+    pesi_cammini_semplici=maze.pesi_cammini_semplici
+
     
     #creo un'istanza della classe Output_file
     outfile= Output_file(nome_labirinto)
@@ -95,4 +97,4 @@ def calcolatore():
     # creo un file json con le caratteristiche di tutti i cammini possibili trovati
     outfile.crea_file_json(cammini_semplici,pesi_cammini_semplici,'tutti i cammini semplici')
     
-    return (labirinto, partenze, destinazioni, shortest_path, weight)
+    
