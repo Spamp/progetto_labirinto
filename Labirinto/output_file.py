@@ -30,7 +30,7 @@ class Output_file:
         self.percorso_file=os.path.join(self.percorso_cartella,self.nome_labirinto)
         
         
-    def crea_immagini_output(self,labirinto, partenze,destinazioni, shortest_path):
+    def crea_immagini_output(self, labirinto, partenze, destinazioni, shortest_path):
         """
         metodo che richiama direttamete i metedi di creazione e salvataggio delle immagini rappresentanti
         le soluzioni del labirinto
@@ -115,7 +115,7 @@ class Output_file:
         return immagine_rgb
     
     
-    def crea_file_json(self,cammini,pesi,nome_file):
+    def crea_file_json(self, cammini, pesi, nome_file):
         
         """
         Questo metodo crea dei  dizionari dalle liste che contengono i cammini e i rispettivi pesi e li converte in
@@ -188,6 +188,7 @@ class Output_file:
         immagine = Image.fromarray(immagine_rgb)
         #imposta la grandezza dell'immagine jpg di modo che sia la stessa del labirinto
         area_visualizzazione=(0,0,larghezza,altezza)
+        #visualizzo l'area di visualizzazione
         immagine_cropped = immagine.crop(area_visualizzazione)
         #salva l'immagine nel percorso specificato
         immagine_cropped.save(percorso_immagine, "JPEG")
