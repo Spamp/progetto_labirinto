@@ -30,10 +30,8 @@ def calcolatore():
     tutti i cammini trovati. 
     Nel caso in cui i 25 secondi stabiliti non fossero sufficienti per calcolare tutti i cammini, e quindi il thread rimanesse attivo più a lungo,
     arriviamo alla conclusione che il metodo ha trovato troppi percorsi da calcolare, che possiamo assumere di numero infinito, motivo per il quale
-    il thread si blocca.
-    
-    In seguito alla conclusione del thread, viene richiamato il metodo "get_attributo", che ci restituisce tutti i cammini trovati con il loro peso
-    associato. Questo metodo è necessario per poter accedere alle due variabili, essendo degli attributi della classe Labirinto. 
+    il thread si blocca. In seguito, vengono restituiti tutti i cammini con i rispettivi pesi attraverso l'istanziamento degli attributi della classe
+    labirinto: cammini semplici e pesi cammini semplici.
     
     Infine, viene creata un'istanza della classe di output, in seguito alla quale viene richiamato il metodo per restituire l'immagine di output
     dei percorsi trovati nel labirinto, e quello per creare un file json che specifica le caratteristiche dei percorsi trovati (nodo di partenza, 
@@ -82,7 +80,7 @@ def calcolatore():
         thread.join()
         print('il thread si è concluso con successo: ha trovato tutti i cammini possibili')
         
-    # richiamo il metodo che mi restituisce gli attributi della classe labirinto "cammini_semplici" e # "pesi_cammini_semplici". 
+    # richiamo gli attributi della classe labirinto "cammini_semplici" e # "pesi_cammini_semplici" 
     cammini_semplici=maze.cammini_semplici
     pesi_cammini_semplici=maze.pesi_cammini_semplici
 
