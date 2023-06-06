@@ -39,31 +39,35 @@ def calcolatore():
 
 
     """
-    # ottieni i nomi dei file e delle cartelle nella directory
-    lista_file = os.listdir('./indata/')
+    # Creo una lista con tutti i nomi dei file contenuti all'interno della cartella indata
+    lista_file = os.listdir('./indata/') 
     print(lista_file)
+    # Richiamo il file di input
     nomefile=str(input('Inserisci il nome del file da leggere con formato tiff o json tra uno di quelli elencati:  '))
+    
+    # Divido il nome del file in corrispondenza del punto, in modo tale da separare il nome del file dal formato
     nomelist=nomefile.split('.')
     nome_labirinto=nomelist[0]
-    #Chiedo il file di input e richiamo la funzione di lettura
     filepath = './indata/'+nomefile
+    
+    # Creo un'istanza della classe Input_file 
     input_file=Input_file(filepath)
+    # Richiamo il metodo leggi_file
     (labirinto, partenze, destinazioni)=input_file.leggi_file()
     
-    # creo un'istanza della classe Labirinto
+    # Creo un'istanza della classe Labirinto
     maze = Labirinto(labirinto, partenze, destinazioni)
-    # calcolo il cammino minimo e il peso ad esso associato
+    # Calcolo il cammino minimo e il peso ad esso associato
     shortest_path, weight= maze.cammino_minimo()
     
     # Calcolo tutti i cammini possibili fra partenza e destinazione: 
-        
-    #Richiamo un metodo che crea un thread che scorre la funzione trova_tutti_i_cammini   
+    # richiamo un metodo che crea un thread che scorre la funzione trova_tutti_i_cammini   
     thread = threading.Thread(target=maze.trova_tutti_i_cammini)
     
     #avvio il thread appena creato
     thread.start()
     
-    #blocco il codice principale per 5 secondi per dare il tempo al thread di calcolare tutti i cammini
+    #blocco il codice principale per 5 secondi per dare il tempo al thread secondario di calcolare tutti i cammini
     time.sleep(5)
     
     # quando termina il blocco, controllo se il thread per cercare tutti i cammini è attivo (non è ancora termato)
@@ -78,21 +82,21 @@ def calcolatore():
         #se il thread non è più attivo, quindi si è concluso prima dei 25 secondi autonomamnete, vuol dire che ha trovato tutti 
         #i cammini e si chiude restituendo un messaggio
         thread.join()
-        print('il thread si è concluso con successo: ha trovato tutti i cammini possibili')
+        print('il thread si è concluso con successo: ha trovato il cammino minimo e tutti i cammini possibili')
         
-    # richiamo gli attributi della classe labirinto "cammini_semplici" e # "pesi_cammini_semplici" 
+    # Richiamo gli attributi della classe labirinto "cammini_semplici" e "pesi_cammini_semplici" 
     cammini_semplici=maze.cammini_semplici
     pesi_cammini_semplici=maze.pesi_cammini_semplici
 
     
-    #creo un'istanza della classe Output_file
+    # Creo un'istanza della classe Output_file
     outfile= Output_file(nome_labirinto)
     
-    # restituisco i percorsi trovati
+    # Restituisco i percorsi trovati
     outfile.crea_immagini_output(labirinto, partenze, destinazioni, shortest_path)
-    # creo un file json con le caratteristiche dei cammini minimi trovati
+    # Creo un file json con le caratteristiche dei cammini minimi trovati
     outfile.crea_file_json(shortest_path,weight,'tutti i cammini minimi')
-    # creo un file json con le caratteristiche di tutti i cammini possibili trovati
+    # Creo un file json con le caratteristiche di tutti i cammini possibili trovati
     outfile.crea_file_json(cammini_semplici,pesi_cammini_semplici,'tutti i cammini semplici')
     
     
