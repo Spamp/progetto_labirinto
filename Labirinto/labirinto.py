@@ -182,6 +182,8 @@ class Labirinto:
                             len_cammini.append(len(cammino)-1)
                             
                             # per ogni cammino trovato, calcolo il peso del path
+                            # zip mi genera la sequenza dei nodi attraversati nel cammino, e perciò di tutti gli archi 
+                            # tramite il ciclo for, itero su tutte le sequenze di nodi u,v del percorso per accedere al peso degli archi ("weight")
                             peso_archi_cammino = sum(self.grafo[u][v]['weight'] for u, v in zip(cammino[:-1], cammino[1:]))
                             # aggiunto i pesi trovati alla lista peso_archi
                             peso_archi.append(peso_archi_cammino)

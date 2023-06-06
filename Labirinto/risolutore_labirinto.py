@@ -79,10 +79,10 @@ def calcolatore():
         # se dopo 20 secondi (25 totali) non si è ancora concluso, potrei avere cammini infiniti, quindi blocco il thread
         print("il thread ha trovato solo i cammini minimi, ma non altre soluzioni")
     else:
-        #se il thread non è più attivo, quindi si è concluso prima dei 25 secondi autonomamnete, vuol dire che ha trovato tutti 
+        #se il thread non è più attivo, quindi si è concluso prima dei 25 secondi autonomamente, vuol dire che ha trovato tutti 
         #i cammini e si chiude restituendo un messaggio
         thread.join()
-        print('il thread si è concluso con successo: ha trovato il cammino minimo e tutti i cammini possibili')
+        print('il thread si è concluso con successo: ha trovato i cammini minimi e tutti i cammini possibili')
         
     # Richiamo gli attributi della classe labirinto "cammini_semplici" e "pesi_cammini_semplici" 
     cammini_semplici=maze.cammini_semplici
